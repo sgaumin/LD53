@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad6d18cddbd62b4e8d45da121198f56, type: 3}
+  m_Name: LinkExpressSettings
+  m_EditorClassIdentifier: 
+  entries:
+  - category: 0
+    link: https://github.com/sgaumin
+    backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - category: 1
+    link: https://seb-gamedev.itch.io/
+    backgroundColor: {r: 1, g: 0.38431376, b: 0.38431376, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - category: 2
+    link: https://ldjam.com/
+    backgroundColor: {r: 1, g: 0.3706433, b: 0, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - category: 5
+    link: https://twitter.com/Seb_gamedev
+    backgroundColor: {r: 0, g: 0.91290116, b: 1, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - category: 3
+    link: https://trello.com/
+    backgroundColor: {r: 0.14185333, g: 0, b: 1, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  - category: 4
+    link: https://drive.google.com/
+    backgroundColor: {r: 1, g: 0.79751456, b: 0, a: 1}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  allowMovement: 1
+  allowColorVariation: 1

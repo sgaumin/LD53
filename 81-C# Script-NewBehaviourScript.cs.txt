@@ -1,0 +1,18 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using Utils;
+using UnityEngine;
+using UnityEngine.UI;
+using static Facade;
+
+#ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour
+{
+	#NOTRIM#
+}
+#ROOTNAMESPACEEND#
