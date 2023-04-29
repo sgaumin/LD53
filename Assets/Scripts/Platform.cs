@@ -17,6 +17,7 @@ public class Platform : MonoBehaviour, IRespawn
 
 	[Header("References")]
 	[SerializeField] private LayerMask obstacleLayer;
+	[SerializeField] private SpriteRenderer platform;
 	[SerializeField] private SpriteRenderer overlay;
 	[SerializeField] private Collider2D boxCollider2D;
 
@@ -67,9 +68,7 @@ public class Platform : MonoBehaviour, IRespawn
 	{
 		boxCollider2D.enabled = false;
 
-		await transform.DOScale(Vector2.zero, 0.5f);
-
-		gameObject.SetActive(false);
+		await platform.transform.DOScale(Vector2.zero, 0.5f);
 	}
 
 	public void Initialization()
@@ -77,9 +76,6 @@ public class Platform : MonoBehaviour, IRespawn
 		boxCollider2D.enabled = true;
 
 		transform.DOKill();
-		transform.localScale = Vector3.one;
-
-		if (!gameObject.activeSelf)
-			gameObject.SetActive(true);
+		platform.transform.localScale = Vector3.one;
 	}
 }

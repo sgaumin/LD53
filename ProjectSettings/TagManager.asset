@@ -15,7 +15,7 @@ TagManager:
   - Obstacle
   - Player
   - LetterBox
-  - 
+  - Ground
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 2085920125
+    locked: 0
   - name: Platform
     uniqueID: 3466767853
     locked: 0

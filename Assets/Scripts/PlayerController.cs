@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 	[Header("References")]
 	[SerializeField] private SpriteRenderer sprite;
 	[SerializeField] private LayerMask platformLayer;
+	[SerializeField] private LayerMask groundLayer;
 	[SerializeField] private LayerMask obstacleLayer;
 
 	private Vector2 spawnPosition;
@@ -99,11 +100,11 @@ public class PlayerController : MonoBehaviour, IRespawn
 			}
 			else
 			{
-				if (startPlatform.IsFalling)
+				if (startPlatform != null && startPlatform.IsFalling)
 					startPlatform.Fall().Forget();
 			}
 
-			if (GetCurrentPlatform() == null)
+			if (GetCurrentPlatform() == null || !IsOnGround())
 			{
 				Kill().Forget();
 				return;
@@ -122,6 +123,12 @@ public class PlayerController : MonoBehaviour, IRespawn
 		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position, platformLayer);
 		hit.collider?.TryGetComponent(out platform);
 		return platform;
+	}
+
+	private bool IsOnGround()
+	{
+		bool check = Physics2D.Linecast((Vector2)transform.position, (Vector2)transform.position + 0.1f * Vector2.right, groundLayer);
+		return check;
 	}
 
 	private async UniTask Kill()
