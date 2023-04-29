@@ -11,6 +11,10 @@ public class GameBase : Singleton<GameBase>
 	public event Action OnGameOverEvent;
 	public event Action OnPauseEvent;
 
+	[Header("Gameplay References")]
+	[SerializeField] private DeliveryManager deliveryManager;
+
+	[Header("Settings References")]
 	[SerializeField] private LevelLoader levelLoader;
 	[SerializeField] private MusicPlayer music;
 	[SerializeField] private VisualEffectsHandler effectHandler;
@@ -77,6 +81,14 @@ public class GameBase : Singleton<GameBase>
 		foreach (IRespawn respawner in respawners)
 		{
 			respawner.Initialization();
+		}
+	}
+
+	public void CheckLevelCompleted()
+	{
+		if (deliveryManager.AllDelivered)
+		{
+			Debug.Log($"GAME WON!");
 		}
 	}
 

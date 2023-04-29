@@ -8,7 +8,7 @@ public class LetterBox : MonoBehaviour, IRespawn
 
 	[SerializeField] private SpriteRenderer indicator;
 
-	private bool haReceivedDelivery;
+	public bool HasReceivedDelivery { get; private set; }
 
 	private void Awake()
 	{
@@ -18,11 +18,11 @@ public class LetterBox : MonoBehaviour, IRespawn
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (haReceivedDelivery) return;
+		if (HasReceivedDelivery) return;
 
 		if (collision.TryGetComponent(out PlayerController _))
 		{
-			haReceivedDelivery = true;
+			HasReceivedDelivery = true;
 			indicator.gameObject.SetActive(true); // TODO: Animation of rotation
 
 			OnPlayerCollision?.Invoke();
@@ -36,7 +36,7 @@ public class LetterBox : MonoBehaviour, IRespawn
 
 	public void Initialization()
 	{
-		haReceivedDelivery = false;
+		HasReceivedDelivery = false;
 		indicator.gameObject.SetActive(false);
 	}
 }

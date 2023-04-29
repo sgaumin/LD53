@@ -50,6 +50,9 @@ TagManager:
   - name: Player
     uniqueID: 1562352833
     locked: 0
+  - name: Placement
+    uniqueID: 885595711
+    locked: 0
   - name: Fader
     uniqueID: 1476709903
     locked: 0

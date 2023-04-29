@@ -8,10 +8,13 @@ public class DeliveryManager : MonoBehaviour
 	[SerializeField] private Delivery deliveryPrefab;
 
 	private List<Delivery> deliveries = new List<Delivery>();
+	private LetterBox[] letterBoxes;
+
+	public bool AllDelivered => letterBoxes.All(x => x.HasReceivedDelivery);
 
 	private void Start()
 	{
-		LetterBox[] letterBoxes = FindObjectsOfType<LetterBox>();
+		letterBoxes = FindObjectsOfType<LetterBox>();
 		foreach (LetterBox letterBox in letterBoxes)
 		{
 			letterBox.OnPlayerCollision += Deliver;

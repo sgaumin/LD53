@@ -95,13 +95,14 @@ public class PlayerController : MonoBehaviour, IRespawn
 			if (!Physics2D.Linecast(currentPosition, currentPosition, platformLayer))
 			{
 				Kill().Forget();
-				break;
+				return;
 			}
 
 			step++;
 		}
 
 		isMoving = false;
+		Level.CheckLevelCompleted();
 	}
 
 	private async UniTask Kill()
