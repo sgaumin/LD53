@@ -45,8 +45,8 @@ MonoBehaviour:
     condition: 0
     clauses: []
   pathToButlerExe: C:\Users\sgaum\AppData\Roaming\itch\apps\butler\butler.exe
-  nameOfItchUser: mahjoub
-  nameOfItchGame: test
+  nameOfItchUser: seb-gamedev
+  nameOfItchGame: ld53
   useGeneratedBuildVersion: 1
   channelName: $PLATFORM-$ARCHITECTURE
   showUploadProgress: 1

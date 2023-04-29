@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - category: 0
-    link: https://github.com/sgaumin
+    link: https://github.com/sgaumin/LD53
     backgroundColor: {r: 0, g: 0, b: 0, a: 1}
     textColor: {r: 1, g: 1, b: 1, a: 1}
   - category: 1
-    link: https://seb-gamedev.itch.io/
+    link: https://seb-gamedev.itch.io/ld53
     backgroundColor: {r: 1, g: 0.38431376, b: 0.38431376, a: 1}
     textColor: {r: 1, g: 1, b: 1, a: 1}
   - category: 2
@@ -28,14 +28,6 @@ MonoBehaviour:
   - category: 5
     link: https://twitter.com/Seb_gamedev
     backgroundColor: {r: 0, g: 0.91290116, b: 1, a: 1}
-    textColor: {r: 1, g: 1, b: 1, a: 1}
-  - category: 3
-    link: https://trello.com/
-    backgroundColor: {r: 0.14185333, g: 0, b: 1, a: 1}
-    textColor: {r: 1, g: 1, b: 1, a: 1}
-  - category: 4
-    link: https://drive.google.com/
-    backgroundColor: {r: 1, g: 0.79751456, b: 0, a: 1}
     textColor: {r: 1, g: 1, b: 1, a: 1}
   allowMovement: 1
   allowColorVariation: 1
