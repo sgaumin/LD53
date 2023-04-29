@@ -1,12 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
-using static Facade;
 
 public class Obstacle : MonoBehaviour, IRespawn
 {
 	[SerializeField] private int stepCountToBreak;
+	[SerializeField] private bool canStandOnIt;
 
 	public bool HasBeenEdited { get; set; }
+	public bool CanStandOnIt => canStandOnIt;
 
 	private void Awake()
 	{

@@ -125,9 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff76718025fd7e42aa8a20f692acb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 896
+  isFalling: 0
   invalidColor: {r: 0.9098039, g: 0.23137255, b: 0.23137255, a: 1}
   validColor: {r: 0.11764706, g: 0.7372549, b: 0.4509804, a: 1}
   woodPrefab: {fileID: 5183725760707744032, guid: ec004993b464175419ca16885f233313,
@@ -136,7 +134,11 @@ MonoBehaviour:
     type: 3}
   waterPrefab: {fileID: 5183725760707744032, guid: 2d7704ebee23fd048801fae67a62ecc1,
     type: 3}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 896
   overlay: {fileID: 2539219265865905728}
+  boxCollider2D: {fileID: 900103830883035986}
 --- !u!1 &7006023916765982050
 GameObject:
   m_ObjectHideFlags: 0

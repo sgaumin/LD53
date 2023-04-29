@@ -1,8 +1,10 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
-public class Platform : MonoBehaviour
+public class Platform : MonoBehaviour, IRespawn
 {
-	[SerializeField] private LayerMask obstacleLayer;
+	[SerializeField] private bool isFalling;
 
 	[Header("Checking")]
 	[SerializeField] private Color invalidColor;
@@ -14,7 +16,11 @@ public class Platform : MonoBehaviour
 	[SerializeField] private Obstacle waterPrefab;
 
 	[Header("References")]
+	[SerializeField] private LayerMask obstacleLayer;
 	[SerializeField] private SpriteRenderer overlay;
+	[SerializeField] private Collider2D boxCollider2D;
+
+	public bool IsFalling => isFalling;
 
 	private bool HasObstacle()
 	{
@@ -55,5 +61,25 @@ public class Platform : MonoBehaviour
 	public void HideOverlay()
 	{
 		overlay.gameObject.SetActive(false);
+	}
+
+	public async UniTask Fall()
+	{
+		boxCollider2D.enabled = false;
+
+		await transform.DOScale(Vector2.zero, 0.5f);
+
+		gameObject.SetActive(false);
+	}
+
+	public void Initialization()
+	{
+		boxCollider2D.enabled = true;
+
+		transform.DOKill();
+		transform.localScale = Vector3.one;
+
+		if (!gameObject.activeSelf)
+			gameObject.SetActive(true);
 	}
 }

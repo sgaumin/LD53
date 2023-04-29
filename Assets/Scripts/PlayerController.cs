@@ -68,16 +68,16 @@ public class PlayerController : MonoBehaviour, IRespawn
 		if (isMoving || isDead) return;
 
 		Vector2 startPosition = (Vector2)transform.position;
-		bool isOnPlatform = Physics2D.Linecast(startPosition, startPosition, platformLayer);
-		if (!isOnPlatform) return;
+		if (GetCurrentPlatform() == null) return;
 
 		isMoving = true;
 		CheckPlayerOriantation(direction);
 		int step = 1;
 		while (true)
 		{
-			Vector2 destination = startPosition + (direction * step);
+			Platform startPlatform = GetCurrentPlatform();
 
+			Vector2 destination = startPosition + (direction * step);
 			await transform.DOMove(destination, 1f / moveSpeed);
 
 			Vector2 currentPosition = (Vector2)transform.position;
@@ -89,13 +89,21 @@ public class PlayerController : MonoBehaviour, IRespawn
 				{
 					if (!obstacle.TryToBreak(step))
 					{
-						await transform.DOMove(startPosition + (direction * (step - 1)), 1f / moveSpeed);
+						if (!obstacle.CanStandOnIt)
+						{
+							await transform.DOMove(startPosition + (direction * (step - 1)), 1f / moveSpeed);
+						}
 						break;
 					}
 				}
 			}
+			else
+			{
+				if (startPlatform.IsFalling)
+					startPlatform.Fall().Forget();
+			}
 
-			if (!Physics2D.Linecast(currentPosition, currentPosition, platformLayer))
+			if (GetCurrentPlatform() == null)
 			{
 				Kill().Forget();
 				return;
@@ -106,6 +114,14 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 		isMoving = false;
 		Level.CheckLevelCompleted();
+	}
+
+	private Platform GetCurrentPlatform()
+	{
+		Platform platform = null;
+		RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position, platformLayer);
+		hit.collider?.TryGetComponent(out platform);
+		return platform;
 	}
 
 	private async UniTask Kill()
