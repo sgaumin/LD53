@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
@@ -13,6 +14,8 @@ public class GameBase : Singleton<GameBase>
 	[SerializeField] private LevelLoader levelLoader;
 	[SerializeField] private MusicPlayer music;
 	[SerializeField] private VisualEffectsHandler effectHandler;
+
+	private List<IRespawn> respawners = new List<IRespawn>();
 
 	private GameState state;
 
@@ -57,6 +60,24 @@ public class GameBase : Singleton<GameBase>
 
 		// Disable screen dimming
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	}
+
+	private void Start()
+	{
+		State = GameState.Running;
+	}
+
+	public void Register(IRespawn respawner)
+	{
+		respawners.Add(respawner);
+	}
+
+	public void RestartLevel()
+	{
+		foreach (IRespawn respawner in respawners)
+		{
+			respawner.Initialization();
+		}
 	}
 
 	#region Level Loading

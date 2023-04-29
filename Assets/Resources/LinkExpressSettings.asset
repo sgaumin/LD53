@@ -29,5 +29,5 @@ MonoBehaviour:
     link: https://twitter.com/Seb_gamedev
     backgroundColor: {r: 0, g: 0.91290116, b: 1, a: 1}
     textColor: {r: 1, g: 1, b: 1, a: 1}
-  allowMovement: 1
-  allowColorVariation: 1
+  allowMovement: 0
+  allowColorVariation: 0

@@ -1,20 +1,15 @@
+using System;
 using UnityEngine;
 using static Facade;
 
 public class InputManager : MonoBehaviour
 {
-	private const KeyCode RESTART = KeyCode.R;
-	private readonly KeyCode[] QWERTY = new KeyCode[4] { KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D };
-	private readonly KeyCode[] AZERTY = new KeyCode[4] { KeyCode.Z, KeyCode.S, KeyCode.Q, KeyCode.D };
+	public static event Action OnUpEvent;
+	public static event Action OnDownEvent;
+	public static event Action OnLeftEvent;
+	public static event Action OnRightEvent;
 
-	public static Vector2 InputDirection;
-
-	private KeyCode[] _codes;
-
-	private void Start()
-	{
-		_codes = GetKeyCodes();
-	}
+	private Vector2 inputs;
 
 	private void Update()
 	{
@@ -27,10 +22,6 @@ public class InputManager : MonoBehaviour
 		{
 			Level.Mute();
 		}
-		if (Input.GetButtonDown("Fullscreen"))
-		{
-			Screen.fullScreen = !Screen.fullScreen;
-		}
 #endif
 
 		ListenRestart();
@@ -39,7 +30,7 @@ public class InputManager : MonoBehaviour
 
 	private static void ListenRestart()
 	{
-		if (!Level.IsRunning && Input.GetKeyDown(RESTART))
+		if (!Level.IsRunning && Input.GetKeyDown(KeyCode.R))
 		{
 			Level.ReloadScene();
 		}
@@ -49,43 +40,12 @@ public class InputManager : MonoBehaviour
 	{
 		if (!Level.IsRunning) return;
 
-		if (Input.GetKey(_codes[0]) || Input.GetKey(KeyCode.UpArrow)) // UP
-		{
-			InputDirection.y = 1;
-		}
-		else if (Input.GetKey(_codes[1]) || Input.GetKey(KeyCode.DownArrow)) // DOWN
-		{
-			InputDirection.y = -1;
-		}
-		else
-		{
-			InputDirection.y = 0;
-		}
+		inputs.x = Input.GetAxisRaw("Horizontal");
+		inputs.y = Input.GetAxisRaw("Vertical");
 
-		if (Input.GetKey(_codes[2]) || Input.GetKey(KeyCode.LeftArrow)) // LEFT
-		{
-			InputDirection.x = -1;
-		}
-		else if (Input.GetKey(_codes[3]) || Input.GetKey(KeyCode.RightArrow)) // RIGHT
-		{
-			InputDirection.x = 1;
-		}
-		else
-		{
-			InputDirection.x = 0;
-		}
-	}
-
-	private KeyCode[] GetKeyCodes()
-	{
-		string language = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-		switch (language)
-		{
-			case "fr":
-				return AZERTY;
-
-			default:
-				return QWERTY;
-		}
+		if (inputs.x > 0) OnRightEvent?.Invoke();
+		else if (inputs.x < 0) OnLeftEvent?.Invoke();
+		else if (inputs.y > 0) OnUpEvent?.Invoke();
+		else if (inputs.y < 0) OnDownEvent?.Invoke();
 	}
 }
