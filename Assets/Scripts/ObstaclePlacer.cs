@@ -4,10 +4,12 @@ using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using Utils;
+using static Facade;
 
-public class ObstaclePlacer : MonoBehaviour
+public class ObstaclePlacer : MonoBehaviour, IRespawn
 {
 	public static ObstaclePlacer CurrentSelection;
+	private static int TotalAmount = 0;
 
 	[Header("Animations")]
 	[SerializeField] private float releaseDuration = 0.4f;
@@ -21,7 +23,7 @@ public class ObstaclePlacer : MonoBehaviour
 	private Platform currentPlatformTarget;
 	private bool isBeingDragged;
 	private ObstacleData data;
-	private Vector2 startPosition;
+	private Vector2 startLocalPosition;
 
 	private int amount;
 	public int Amount
@@ -32,6 +34,11 @@ public class ObstaclePlacer : MonoBehaviour
 		{
 			amount = value;
 			SetAmount(amount);
+
+			if (TotalAmount <= 0)
+			{
+				Level.State = GameState.Running;
+			}
 		}
 	}
 
@@ -45,9 +52,19 @@ public class ObstaclePlacer : MonoBehaviour
 	{
 		this.data = data;
 
+		startLocalPosition = transform.localPosition;
+		Initialization();
+	}
+
+	public void Initialization()
+	{
+		TotalAmount += data.amount;
 		Amount = data.amount;
 		spriteRenderer.sprite = data.sprite;
-		startPosition = transform.position;
+		transform.localPosition = startLocalPosition;
+
+		if (!gameObject.activeSelf)
+			gameObject.SetActive(true);
 	}
 
 	public void SetAmount(int value)
@@ -67,6 +84,7 @@ public class ObstaclePlacer : MonoBehaviour
 		{
 			if (currentPlatformTarget != null && currentPlatformTarget.SetObstacle(data))
 			{
+				TotalAmount--;
 				Amount--;
 			}
 
@@ -106,6 +124,8 @@ public class ObstaclePlacer : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		if (Level.State != GameState.LevelEditing) return;
+
 		if (CurrentSelection != null) return;
 
 		isBeingDragged = true;
@@ -118,11 +138,11 @@ public class ObstaclePlacer : MonoBehaviour
 
 		if (Amount <= 0)
 		{
-			gameObject.gameObject.SetActive(false);
+			gameObject.SetActive(false);
 		}
 		else
 		{
-			await transform.DOMove(startPosition, releaseDuration).SetEase(releaseEase);
+			await transform.DOLocalMove(startLocalPosition, releaseDuration).SetEase(releaseEase);
 		}
 
 		CurrentSelection = null;

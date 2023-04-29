@@ -1,13 +1,15 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utils;
 
 public class GameBase : Singleton<GameBase>
 {
 	public event Action OnLoadingEvent;
-	public event Action OnStartRunningEvent;
+	public event Action OnLevelEditingEvent;
+	public event Action OnRunningEvent;
 	public event Action OnGameOverEvent;
 	public event Action OnPauseEvent;
 
@@ -18,8 +20,6 @@ public class GameBase : Singleton<GameBase>
 	[SerializeField] private LevelLoader levelLoader;
 	[SerializeField] private MusicPlayer music;
 	[SerializeField] private VisualEffectsHandler effectHandler;
-
-	private List<IRespawn> respawners = new List<IRespawn>();
 
 	private GameState state;
 
@@ -45,13 +45,17 @@ public class GameBase : Singleton<GameBase>
 					break;
 
 				case GameState.Running:
-					OnStartRunningEvent?.Invoke();
+					OnRunningEvent?.Invoke();
+					break;
+
+				case GameState.LevelEditing:
+					OnLevelEditingEvent?.Invoke();
 					break;
 			}
 		}
 	}
 
-	public bool IsRunning => state == GameState.Running;
+	public bool IsRunning => state == GameState.LevelEditing || state == GameState.Running;
 
 	protected override void Awake()
 	{
@@ -68,17 +72,14 @@ public class GameBase : Singleton<GameBase>
 
 	private void Start()
 	{
-		State = GameState.Running;
-	}
-
-	public void Register(IRespawn respawner)
-	{
-		respawners.Add(respawner);
+		State = GameState.LevelEditing;
 	}
 
 	public void RestartLevel()
 	{
-		foreach (IRespawn respawner in respawners)
+		State = GameState.LevelEditing;
+
+		foreach (IRespawn respawner in FindObjectsOfType<MonoBehaviour>(true).OfType<IRespawn>().ToList())
 		{
 			respawner.Initialization();
 		}

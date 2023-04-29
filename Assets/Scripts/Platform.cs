@@ -40,6 +40,7 @@ public class Platform : MonoBehaviour
 		}
 
 		obstacle = Instantiate(obstacle);
+		obstacle.HasBeenEdited = true;
 		obstacle.transform.transform.position = transform.position;
 
 		return true;

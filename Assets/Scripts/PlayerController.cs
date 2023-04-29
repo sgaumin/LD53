@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour, IRespawn
 		InputManager.OnRightEvent += MoveRight;
 
 		spawnPosition = transform.position;
-		Register();
 		Initialization();
 	}
 
@@ -62,6 +61,10 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private async UniTask Move(Vector2 direction)
 	{
+		// Force game running if receiving input while editing
+		if (Level.State == GameState.LevelEditing)
+			Level.State = GameState.Running;
+
 		if (isMoving || isDead) return;
 
 		Vector2 startPosition = (Vector2)transform.position;
@@ -121,11 +124,6 @@ public class PlayerController : MonoBehaviour, IRespawn
 		Vector2 scale = sprite.transform.localScale;
 		scale.x *= -1f;
 		sprite.transform.localScale = scale;
-	}
-
-	public void Register()
-	{
-		Level.Register(this);
 	}
 
 	public void Initialization()

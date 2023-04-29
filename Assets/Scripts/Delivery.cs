@@ -9,7 +9,6 @@ public class Delivery : MonoBehaviour, IRespawn
 
 	private void Awake()
 	{
-		Register();
 		Initialization();
 	}
 
@@ -21,11 +20,6 @@ public class Delivery : MonoBehaviour, IRespawn
 	private void FixedUpdate()
 	{
 		transform.position = Vector3.Lerp(transform.position, player.transform.position, smoothFollow);
-	}
-
-	public void Register()
-	{
-		Level.Register(this);
 	}
 
 	public void Initialization()

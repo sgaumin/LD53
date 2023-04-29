@@ -6,9 +6,10 @@ public class Obstacle : MonoBehaviour, IRespawn
 {
 	[SerializeField] private int stepCountToBreak;
 
+	public bool HasBeenEdited { get; set; }
+
 	private void Awake()
 	{
-		Register();
 		Initialization();
 	}
 
@@ -24,13 +25,10 @@ public class Obstacle : MonoBehaviour, IRespawn
 		transform.localScale = scale;
 	}
 
-	public void Register()
-	{
-		Level.Register(this);
-	}
-
 	public void Initialization()
 	{
+		if (HasBeenEdited) Destroy(gameObject);
+
 		if (gameObject.activeSelf) return;
 
 		gameObject.SetActive(true);

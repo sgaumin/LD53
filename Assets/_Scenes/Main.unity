@@ -2249,7 +2249,7 @@ PrefabInstance:
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: orthographic size
-      value: 3.75
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
@@ -2269,22 +2269,22 @@ PrefabInstance:
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.15777491
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.084940314
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.6831491
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8264463
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5781611409483811789, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
@@ -2369,6 +2369,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2431293743269658998, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_MaskAlphaCutoff
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431293743269658998, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_IsCustomRangeActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953981695296845695, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_MaskAlphaCutoff
+      value: 0.749
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953981695296845695, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_IsCustomRangeActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386778995415077569, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900644041118453908, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6832955378635699944, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
         type: 3}
       propertyPath: m_Name
@@ -2382,12 +2412,12 @@ PrefabInstance:
     - target: {fileID: 6832955378635699951, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6832955378635699951, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 6832955378635699951, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
         type: 3}

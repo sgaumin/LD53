@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6832955377837739094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139,6 +139,10 @@ MonoBehaviour:
   - type: 1
     sprite: {fileID: 21300000, guid: e39a24abaeb471f4ca4b62045d5e009c, type: 3}
     amount: 2
+  yInPosition: -3
+  fadeDuration: 1
+  fadeInEase: 27
+  fadeOutEase: 26
   obstaclePlacers:
   - {fileID: 8532339515064773254}
   - {fileID: 7552528615773596655}

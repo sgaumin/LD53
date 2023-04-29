@@ -1,17 +1,40 @@
+using DG.Tweening;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
+using static Facade;
 
 public class PlacementManager : MonoBehaviour
 {
 	[SerializeField] private List<ObstacleData> configs;
 
+	[Header("Animation")]
+	[SerializeField] private float yInPosition;
+	[SerializeField] private float fadeDuration = 0.5f;
+	[SerializeField] private Ease fadeInEase = Ease.OutBack;
+	[SerializeField] private Ease fadeOutEase = Ease.InBack;
+
 	[Header("References")]
 	[SerializeField] private ObstaclePlacer[] obstaclePlacers;
+
+	private Vector2 startPosition;
 
 	private void Reset()
 	{
 		obstaclePlacers = GetComponentsInChildren<ObstaclePlacer>();
+	}
+
+	private void Awake()
+	{
+		Level.OnLevelEditingEvent += FadIn;
+		Level.OnRunningEvent += FadOut;
+
+		startPosition = transform.position;
+	}
+
+	private void OnDestroy()
+	{
+		Level.OnLevelEditingEvent -= FadIn;
+		Level.OnRunningEvent -= FadOut;
 	}
 
 	private void Start()
@@ -45,5 +68,15 @@ public class PlacementManager : MonoBehaviour
 			reorderedPlacers[i].Setup(configs[i]);
 			reorderedPlacers[i].gameObject.SetActive(true);
 		}
+	}
+
+	private void FadIn()
+	{
+		transform.DOMoveY(yInPosition, fadeDuration).SetEase(fadeInEase);
+	}
+
+	private void FadOut()
+	{
+		transform.DOMoveY(startPosition.y, fadeDuration).SetEase(fadeOutEase);
 	}
 }

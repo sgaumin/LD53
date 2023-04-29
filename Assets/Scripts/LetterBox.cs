@@ -12,7 +12,6 @@ public class LetterBox : MonoBehaviour, IRespawn
 
 	private void Awake()
 	{
-		Register();
 		Initialization();
 	}
 
@@ -27,11 +26,6 @@ public class LetterBox : MonoBehaviour, IRespawn
 
 			OnPlayerCollision?.Invoke();
 		}
-	}
-
-	public void Register()
-	{
-		Level.Register(this);
 	}
 
 	public void Initialization()
