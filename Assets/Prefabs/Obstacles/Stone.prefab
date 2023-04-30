@@ -20,6 +20,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
         type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 226141990045206764, guid: f23d7e8790c5fdc46adfc9e222ab0415,
+        type: 3}
+    - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
+        type: 3}
       propertyPath: stepCountToBreak
       value: 5
       objectReference: {fileID: 0}

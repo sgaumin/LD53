@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3754351663408636764}
   - component: {fileID: 893805820340881611}
-  - component: {fileID: 1653095909712215289}
   - component: {fileID: 1810760132520231232}
   m_Layer: 0
   m_Name: Grass
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2085920125
   m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingOrder: 10000
   m_Sprite: {fileID: 605941883, guid: 56b0d9eec6dd5cc4984929d65cf8c73e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,19 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1653095909712215289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5593853250889772617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600c191e0d8bfc24bb0f5190812b12be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 893805820340881611}
 --- !u!114 &1810760132520231232
 MonoBehaviour:
   m_ObjectHideFlags: 0

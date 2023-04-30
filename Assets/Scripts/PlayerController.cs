@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour, IRespawn
 	[SerializeField] private float idleAnimationFactor = 0.2f;
 	[SerializeField] private Ease idleAnimationEase = Ease.OutSine;
 
+	[Header("Effects")]
+	[SerializeField] private GameObject stepEffect;
+
 	[Header("Audio")]
 	[SerializeField] private AudioExpress.AudioClip fallingSound;
 	[SerializeField] private AudioExpress.AudioClip footStepSound;
@@ -109,6 +112,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 			// If destination is wall stops
 			if (IsThereWallAt(destination)) break;
 
+			SpawnEffect();
 			await transform.DOMove(destination, 1f / currentMoveSpeed).SetEase(Ease.Linear);
 
 			Vector2 currentPosition = (Vector2)transform.position;
@@ -125,6 +129,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 							obstacle.PlayContactSound();
 
 							Level.GenerateImpulse();
+							SpawnEffect();
 
 							await transform.DOMove(startPosition + (direction * (step - 1)), 1f / (moveSpeed * 2f));
 						}
@@ -161,7 +166,28 @@ public class PlayerController : MonoBehaviour, IRespawn
 		}
 
 		isMoving = false;
-		Level.CheckLevelCompleted();
+		CheckLevelCompleted().Forget();
+	}
+
+	private async UniTask CheckLevelCompleted()
+	{
+		if (Level.IsLevelCompleted())
+		{
+			CanInteract = false;
+
+			source.Cancel();
+			sprite.transform.DOKill();
+
+			await UniTask.Delay(1000);
+
+			Level.PlayerLevelCompletion();
+			SpawnEffect();
+			Level.GenerateImpulse();
+
+			await transform.DOMoveY(8f, 0.5f).SetEase(Ease.Linear);
+
+			Level.LoadMap();
+		}
 	}
 
 	private Platform GetCurrentPlatform()
@@ -241,6 +267,8 @@ public class PlayerController : MonoBehaviour, IRespawn
 		transform.DOKill();
 		await transform.DOMoveY(spawnPosition.y, 0.5f).SetEase(Ease.Linear);
 
+		SpawnEffect();
+
 		spawnSound.Play();
 		Level.GenerateImpulse();
 		sorting.enabled = true;
@@ -248,5 +276,11 @@ public class PlayerController : MonoBehaviour, IRespawn
 		CanInteract = true;
 
 		PlayIdle().Forget();
+	}
+
+	private void SpawnEffect()
+	{
+		GameObject effect = Instantiate(stepEffect);
+		effect.transform.position = transform.position;
 	}
 }

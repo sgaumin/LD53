@@ -62,6 +62,8 @@ public class Platform : MonoBehaviour, IRespawn
 
 		obstacle = Instantiate(obstacle, transform);
 		obstacle.HasBeenEdited = true;
+
+		obstacle.SpawnEffect();
 		obstacle.PlayEditingSound();
 		obstacle.transform.transform.position = transform.position;
 

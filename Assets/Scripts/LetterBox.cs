@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using static Facade;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 using Random = UnityEngine.Random;
 
 public class LetterBox : MonoBehaviour, IRespawn
@@ -36,7 +38,11 @@ public class LetterBox : MonoBehaviour, IRespawn
 		if (collision.TryGetComponent(out PlayerController player) && player.CanInteract)
 		{
 			HasReceivedDelivery = true;
-			indicator.gameObject.SetActive(true); // TODO: Animation of rotation
+
+			transform.DOKill();
+			transform.DOScaleY(1.75f, 0.125f).From(1f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
+
+			indicator.gameObject.SetActive(true);
 
 			deliverySound.Play();
 

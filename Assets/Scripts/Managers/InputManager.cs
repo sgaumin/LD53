@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Quit"))
+		if (Input.GetButtonDown("Quit") && Level.State != GameState.OnMap)
 		{
 			Level.LoadMap();
 			return;

@@ -5510,9 +5510,12 @@ PrefabInstance:
     - target: {fileID: 1976038226068920914, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}
       propertyPath: m_text
-      value: 'MADE BY
+      value: 'MADE in 48 hours
 
-        @SEB_GAMEDEV'
+        by @SEB_GAMEDEV
+
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 1976038226068920914, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}

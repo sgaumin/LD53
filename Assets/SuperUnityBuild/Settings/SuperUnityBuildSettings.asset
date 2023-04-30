@@ -99,10 +99,10 @@ MonoBehaviour:
   _basicSettings:
     baseBuildFolder: Builds
     buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE
-    openFolderPostBuild: 0
+    openFolderPostBuild: 1
   _productParameters:
-    buildCounter: 1
-    buildVersion: 1.0.0.1
+    buildCounter: 2
+    buildVersion: 1.0.0.2
     versionTemplate: 1.0.0.$BUILD
     autoGenerate: 1
     syncWithPlayerSettings: 0

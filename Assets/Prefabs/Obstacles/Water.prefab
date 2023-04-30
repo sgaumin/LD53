@@ -20,6 +20,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
         type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 226141990045206764, guid: fafe1e28b3143df47aa38f5d0d1d31df,
+        type: 3}
+    - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
+        type: 3}
       propertyPath: canStandOnIt
       value: 1
       objectReference: {fileID: 0}

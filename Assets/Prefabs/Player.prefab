@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1562352833
   m_SortingLayer: 2
-  m_SortingOrder: -1250
+  m_SortingOrder: 250
   m_Sprite: {fileID: 21300000, guid: c17df5b0319feca4c9366c16db3ffc73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,6 +151,8 @@ MonoBehaviour:
   idleAnimationDuration: 0.2
   idleAnimationFactor: 1.2
   idleAnimationEase: 3
+  stepEffect: {fileID: 226141990045206764, guid: 62dc846aecb0374479921528b25e7bed,
+    type: 3}
   fallingSound: {fileID: 11400000, guid: b7853d61a7714994facf6fb971b99bcd, type: 2}
   footStepSound: {fileID: 11400000, guid: d60247e9fa8e22a4298490d8247c0196, type: 2}
   spawnSound: {fileID: 11400000, guid: 797dd0920d40b354685dcd31ece8f4ae, type: 2}

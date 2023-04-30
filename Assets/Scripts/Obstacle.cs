@@ -3,6 +3,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using static Facade;
 
 public class Obstacle : MonoBehaviour, IRespawn
 {
@@ -14,6 +15,9 @@ public class Obstacle : MonoBehaviour, IRespawn
 	[SerializeField] private AudioExpress.AudioClip editingSound;
 	[SerializeField] private AudioExpress.AudioClip contactSound;
 	[SerializeField] private AudioExpress.AudioClip specialSound;
+
+	[Header("Effects")]
+	[SerializeField] private GameObject effect;
 
 	[Header("References")]
 	[SerializeField] private GameObject bubble;
@@ -35,10 +39,18 @@ public class Obstacle : MonoBehaviour, IRespawn
 		if (Random.value >= 0.5f) Flip();
 	}
 
+	public void SpawnEffect()
+	{
+		if (effect == null) return;
+
+		GameObject e = Instantiate(effect);
+		e.transform.position = transform.position;
+	}
+
 	[Button]
 	public async UniTask ShowBubble()
 	{
-		if (isShowingBubble || stepCountToBreak > 9) return;
+		if (isShowingBubble || stepCountToBreak > 9 || Level.UnlockedLevelIndex < 12) return;
 
 		isShowingBubble = true;
 		bubble.SetActive(true);
@@ -77,6 +89,8 @@ public class Obstacle : MonoBehaviour, IRespawn
 
 	public bool TryToBreak(int currentStepCount)
 	{
+		SpawnEffect();
+
 		bool check = currentStepCount >= stepCountToBreak;
 		if (check)
 		{

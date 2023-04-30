@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockAll: 0
+  skipCinematic: 0
   levelCompletedSound: {fileID: 11400000, guid: 0e05a61163429544bbc5be363235e612,
     type: 2}
   levelLoader: {fileID: 2267988313410949240}

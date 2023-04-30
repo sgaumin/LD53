@@ -137,17 +137,24 @@ public class GameBase : Singleton<GameBase>
 		}
 	}
 
-	public void CheckLevelCompleted()
+	public bool IsLevelCompleted()
 	{
 		if (DeliveryManager.Instance.AllDelivered)
 		{
-			levelCompletedSound.Play();
+			State = GameState.GameOver;
 
 			if (UnlockedLevelIndex == Loader.CurrentIndex)
 				UnlockedLevelIndex++;
 
-			LoadMap();
+			return true;
 		}
+
+		return false;
+	}
+
+	public void PlayerLevelCompletion()
+	{
+		levelCompletedSound.Play();
 	}
 
 	#region Level Loading

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[ExecuteAlways]
 public class VerticalLayerSortingSetter : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer spriteRenderer;
