@@ -9,15 +9,6 @@ public class VisualEffectsHandler : MonoBehaviour
 
 	public FadeScreen Fader => fader;
 
-
-	private void Start()
-	{
-		if (fader != null)
-		{
-			fader.FadeIn();
-		}
-	}
-
 	public void GenerateImpulse()
 	{
 		impulse.GenerateImpulse();

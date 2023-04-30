@@ -186,6 +186,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2593835828638304647, guid: 91f77c7f45a95cc40a928615b549a427,
+        type: 3}
+      propertyPath: unlockAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593835828638304647, guid: 91f77c7f45a95cc40a928615b549a427,
+        type: 3}
+      propertyPath: skipCinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: orthographic size
@@ -215,6 +225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781611409483811789, guid: 91f77c7f45a95cc40a928615b549a427,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91f77c7f45a95cc40a928615b549a427, type: 3}

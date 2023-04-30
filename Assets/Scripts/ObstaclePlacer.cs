@@ -37,7 +37,18 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 			amount = value;
 			SetAmount(amount);
 
-			if (TotalAmount <= 0)
+			if (!PlacementManager.ManualMode)
+			{
+				if (TotalAmount <= 0)
+				{
+					Level.State = GameState.Running;
+				}
+				else if (Level.State != GameState.LevelEditing)
+				{
+					Level.State = GameState.LevelEditing;
+				}
+			}
+			else
 			{
 				Level.State = GameState.Running;
 			}
@@ -63,8 +74,6 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 	public void Setup(ObstacleData data)
 	{
 		this.data = data;
-
-
 		startLocalPosition = transform.localPosition;
 		Initialization();
 	}

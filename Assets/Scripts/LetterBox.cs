@@ -33,7 +33,7 @@ public class LetterBox : MonoBehaviour, IRespawn
 	{
 		if (HasReceivedDelivery) return;
 
-		if (collision.TryGetComponent(out PlayerController _))
+		if (collision.TryGetComponent(out PlayerController player) && player.CanInteract)
 		{
 			HasReceivedDelivery = true;
 			indicator.gameObject.SetActive(true); // TODO: Animation of rotation

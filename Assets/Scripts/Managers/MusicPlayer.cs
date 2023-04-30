@@ -19,12 +19,14 @@ public class MusicPlayer : MonoBehaviour
 
 	private void Awake()
 	{
+		Level.OnMapEvent += PlayMapMusic;
 		Level.OnLevelEditingEvent += PlayLevelEditingMusic;
 		Level.OnRunningEvent += PlayGameMusic;
 	}
 
 	private void OnDestroy()
 	{
+		Level.OnMapEvent -= PlayMapMusic;
 		Level.OnLevelEditingEvent -= PlayLevelEditingMusic;
 		Level.OnRunningEvent -= PlayGameMusic;
 	}

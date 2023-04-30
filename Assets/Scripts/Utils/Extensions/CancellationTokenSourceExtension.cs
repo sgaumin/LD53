@@ -24,7 +24,7 @@ namespace Utils
 		/// <param name="source"><see cref="CancellationTokenSource"/> reference.</param>
 		public static void SafeDispose(this CancellationTokenSource source)
 		{
-			if (source != null)
+			if (source != null && source.Token.CanBeCanceled)
 			{
 				source.Cancel();
 				source.Dispose();

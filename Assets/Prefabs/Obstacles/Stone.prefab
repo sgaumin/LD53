@@ -7,6 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 458659240480007012, guid: 99b164811d7fc2444afdc88125b6cf95,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e39a24abaeb471f4ca4b62045d5e009c,
+        type: 3}
+    - target: {fileID: 458659240480007012, guid: 99b164811d7fc2444afdc88125b6cf95,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
         type: 3}
       propertyPath: stepCountToBreak

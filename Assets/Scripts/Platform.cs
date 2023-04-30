@@ -60,7 +60,7 @@ public class Platform : MonoBehaviour, IRespawn
 				break;
 		}
 
-		obstacle = Instantiate(obstacle);
+		obstacle = Instantiate(obstacle, transform);
 		obstacle.HasBeenEdited = true;
 		obstacle.PlayEditingSound();
 		obstacle.transform.transform.position = transform.position;

@@ -1,8 +1,11 @@
 ﻿public enum GameState
 {
-	Loading,
+	StartLoading,
+	EndLoading,
+	OnMap,
 	LevelEditing,
 	Running,
 	GameOver,
-	Pause
+	Pause,
+	NotSet
 }

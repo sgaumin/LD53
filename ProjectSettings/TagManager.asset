@@ -56,6 +56,9 @@ TagManager:
   - name: Placement
     uniqueID: 885595711
     locked: 0
+  - name: Indication
+    uniqueID: 2000977057
+    locked: 0
   - name: Fader
     uniqueID: 1476709903
     locked: 0

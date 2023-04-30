@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 using static Facade;
@@ -9,19 +10,34 @@ public class InputManager : MonoBehaviour
 	public static event Action OnLeftEvent;
 	public static event Action OnRightEvent;
 
+	[SerializeField] private LayerMask obstacleMask;
+
 	private Vector2 inputs;
 
 	private void Update()
 	{
-#if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_EDITOR
 		if (Input.GetButtonDown("Quit"))
 		{
-			Level.Quit();
+			Level.LoadMap();
+			return;
 		}
-#endif
 
 		ListenRestart();
 		ListenKeyAxis();
+		ShowObstacleBubble();
+	}
+
+	private void ShowObstacleBubble()
+	{
+		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector3.forward, 100, obstacleMask);
+		if (hit.collider != null && hit.collider.TryGetComponent(out Obstacle obstacle))
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				obstacle.ShowBubble().Forget();
+			}
+		}
 	}
 
 	private static void ListenRestart()

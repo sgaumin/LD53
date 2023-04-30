@@ -46,6 +46,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 357130560318049922}
+  - component: {fileID: 4010501656862117373}
   m_Layer: 0
   m_Name: Level2-1
   m_TagString: Untagged
@@ -72,6 +73,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4010501656862117373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357130560318049921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9218162b41edea843ad5f0a5af96f3c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flipPlayerAtStart: 0
+  events:
+  - type: 4
+    restartCount: 0
+    levelEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 357130560010475613}
+          m_TargetAssemblyTypeName: PlacementManager, Assembly-CSharp
+          m_MethodName: set_ManualMode
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - type: 3
+    restartCount: 1
+    levelEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1481565161521159155}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Take and Place this for help!
+            m_BoolArgument: 1
+          m_CallState: 2
+  instructions: {fileID: 609682999615884053}
 --- !u!1 &357130560489660842
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +429,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1976038226068920914, guid: 74c361c0e54c910439acab90f6fa683e,
+        type: 3}
+      propertyPath: m_text
+      value: TAKE AND PLACE THIS FOR SOME HELP!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976038226068920914, guid: 74c361c0e54c910439acab90f6fa683e,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 6911971964190811024, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -417,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 6911971964190811024, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.4722
+      value: 7.4722
       objectReference: {fileID: 0}
     - target: {fileID: 6911971964190811024, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}
@@ -467,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 6911971964190811024, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.84
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 6911971964190811024, guid: 74c361c0e54c910439acab90f6fa683e,
         type: 3}
@@ -486,6 +546,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74c361c0e54c910439acab90f6fa683e, type: 3}
+--- !u!114 &609682999615884053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1976038226068920914, guid: 74c361c0e54c910439acab90f6fa683e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1376495345220800839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481565161521159155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1481565161521159155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 546581056116837044, guid: 74c361c0e54c910439acab90f6fa683e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1376495345220800839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5545631915623592663 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6911971964190811024, guid: 74c361c0e54c910439acab90f6fa683e,
@@ -499,11 +577,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357130560039538525}
     m_Modifications:
-    - target: {fileID: 1965733113743093556, guid: f4ad84cf1b9d06342bb21e2c654eb0ab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 1965733113743093557, guid: f4ad84cf1b9d06342bb21e2c654eb0ab,
         type: 3}
       propertyPath: m_SortingOrder
@@ -1059,9 +1132,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Placement
       objectReference: {fileID: 0}
+    - target: {fileID: 6832955378635699944, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6832955378635699950, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
         type: 3}
       propertyPath: configs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832955378635699950, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+        type: 3}
+      propertyPath: startWithManualMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6832955378635699950, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
@@ -1132,6 +1215,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6496232374063378099}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &357130560010475613 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6832955378635699950, guid: 386921f4bbed4b742a6c23d7cbe2bb86,
+    type: 3}
+  m_PrefabInstance: {fileID: 6496232374063378099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8392536e68e589e43baeec7760be998a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8981367637397607234
 PrefabInstance:
   m_ObjectHideFlags: 0

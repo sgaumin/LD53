@@ -2,10 +2,10 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using static Facade;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlacementManager : MonoBehaviour
 {
+	[SerializeField] private bool startWithManualMode;
 	[SerializeField] private List<ObstacleData> configs;
 
 	[Header("Animation")]
@@ -19,6 +19,8 @@ public class PlacementManager : MonoBehaviour
 
 	private Vector2 startPosition;
 
+	public static bool ManualMode { get; set; }
+
 	private void Reset()
 	{
 		obstaclePlacers = GetComponentsInChildren<ObstaclePlacer>();
@@ -28,6 +30,8 @@ public class PlacementManager : MonoBehaviour
 	{
 		Level.OnLevelEditingEvent += FadIn;
 		Level.OnRunningEvent += FadOut;
+
+		ManualMode = startWithManualMode;
 
 		startPosition = transform.position;
 	}
@@ -83,12 +87,16 @@ public class PlacementManager : MonoBehaviour
 
 	private void FadIn()
 	{
+		if (ManualMode) return;
+
 		transform.DOKill();
 		transform.DOMoveY(yInPosition, fadeDuration).SetEase(fadeInEase);
 	}
 
 	private void FadOut()
 	{
+		if (ManualMode) return;
+
 		transform.DOKill();
 		transform.DOMoveY(startPosition.y, fadeDuration).SetEase(fadeOutEase);
 	}
