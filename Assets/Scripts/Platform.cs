@@ -1,10 +1,15 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using static BuildConstants;
 
 public class Platform : MonoBehaviour, IRespawn
 {
 	[SerializeField] private bool isFalling;
+
+	[Header("Visual")]
+	[SerializeField] private Color normalGround;
+	[SerializeField] private Color fallingGround;
 
 	[Header("Checking")]
 	[SerializeField] private Color invalidColor;
@@ -22,6 +27,11 @@ public class Platform : MonoBehaviour, IRespawn
 	[SerializeField] private Collider2D boxCollider2D;
 
 	public bool IsFalling => isFalling;
+
+	private void Start()
+	{
+		Initialization();
+	}
 
 	private bool HasObstacle()
 	{
@@ -75,6 +85,7 @@ public class Platform : MonoBehaviour, IRespawn
 	{
 		boxCollider2D.enabled = true;
 
+		platform.color = isFalling ? fallingGround : normalGround;
 		transform.DOKill();
 		platform.transform.localScale = Vector3.one;
 	}

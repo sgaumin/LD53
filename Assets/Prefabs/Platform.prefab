@@ -75,6 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFalling: 0
+  normalGround: {r: 0.67058825, g: 0.5803922, b: 0.47843137, a: 1}
+  fallingGround: {r: 0.5882353, g: 0.42352942, b: 0.42352942, a: 1}
   invalidColor: {r: 0.9098039, g: 0.23137255, b: 0.23137255, a: 1}
   validColor: {r: 0.11764706, g: 0.7372549, b: 0.4509804, a: 1}
   woodPrefab: {fileID: 5183725760707744032, guid: ec004993b464175419ca16885f233313,
@@ -330,8 +332,8 @@ SpriteRenderer:
   m_SortingLayerID: -828199443
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bfb863c3786fc2741b498460816f7973, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c419f4229ee8c4b4d8cb884a15b60f9f, type: 3}
+  m_Color: {r: 0.67058825, g: 0.5803922, b: 0.47843137, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

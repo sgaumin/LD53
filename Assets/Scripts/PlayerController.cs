@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 					startPlatform.Fall().Forget();
 			}
 
-			if (GetCurrentPlatform() == null || !IsOnGround())
+			if (GetCurrentPlatform() == null && !IsOnGround())
 			{
 				Kill().Forget();
 				return;

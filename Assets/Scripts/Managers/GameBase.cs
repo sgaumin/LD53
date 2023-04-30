@@ -89,7 +89,7 @@ public class GameBase : Singleton<GameBase>
 	{
 		if (deliveryManager.AllDelivered)
 		{
-			Debug.Log($"GAME WON!");
+			ReloadScene();
 		}
 	}
 
