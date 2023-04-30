@@ -126,6 +126,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepCountToBreak: 3
+  canStandOnIt: 0
+  breakingSound: {fileID: 11400000, guid: bc0013ecda8b8c94b9a0424959c7c8b1, type: 2}
+  editingSound: {fileID: 11400000, guid: 94251dd2e263dcb44b8facea6ee9c8dd, type: 2}
+  contactSound: {fileID: 11400000, guid: 42d4e077cda53a34db82fbb3cb75c056, type: 2}
+  specialSound: {fileID: 0}
 --- !u!114 &4485858546436365219
 MonoBehaviour:
   m_ObjectHideFlags: 0

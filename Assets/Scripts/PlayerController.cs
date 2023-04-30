@@ -1,3 +1,4 @@
+using AudioExpress;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -9,6 +10,11 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	[Header("Animations")]
 	[SerializeField] private float deathScaleDownDuration = 1f;
+
+	[Header("Audio")]
+	[SerializeField] private AudioExpress.AudioClip fallingSound;
+	[SerializeField] private AudioExpress.AudioClip footStepSound;
+	[SerializeField] private AudioExpress.AudioClip spawnSound;
 
 	[Header("References")]
 	[SerializeField] private SpriteRenderer sprite;
@@ -79,6 +85,9 @@ public class PlayerController : MonoBehaviour, IRespawn
 			Platform startPlatform = GetCurrentPlatform();
 
 			Vector2 destination = startPosition + (direction * step);
+
+			footStepSound.Play();
+
 			await transform.DOMove(destination, 1f / moveSpeed);
 
 			Vector2 currentPosition = (Vector2)transform.position;
@@ -92,7 +101,12 @@ public class PlayerController : MonoBehaviour, IRespawn
 					{
 						if (!obstacle.CanStandOnIt)
 						{
+							obstacle.PlayContactSound();
 							await transform.DOMove(startPosition + (direction * (step - 1)), 1f / moveSpeed);
+						}
+						else
+						{
+							obstacle.PlayStandOnSound();
 						}
 						break;
 					}
@@ -134,6 +148,9 @@ public class PlayerController : MonoBehaviour, IRespawn
 	private async UniTask Kill()
 	{
 		isDead = true;
+
+		fallingSound.Play();
+
 		await sprite.transform.DOScale(Vector2.zero, deathScaleDownDuration);
 
 		Level.RestartLevel();
@@ -157,5 +174,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 		sprite.transform.localScale = Vector2.one;
 
 		transform.position = spawnPosition;
+
+		spawnSound.Play();
 	}
 }

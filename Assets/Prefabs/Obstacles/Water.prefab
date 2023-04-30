@@ -14,6 +14,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
         type: 3}
+      propertyPath: specialSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 692c10c4411f88e4881e684a5b06d8ce,
+        type: 2}
+    - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
+        type: 3}
       propertyPath: stepCountToBreak
       value: 5
       objectReference: {fileID: 0}

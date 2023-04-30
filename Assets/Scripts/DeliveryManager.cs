@@ -30,7 +30,7 @@ public class DeliveryManager : MonoBehaviour
 
 	private void Deliver()
 	{
-		Delivery delivery = deliveries.Random();
+		Delivery delivery = deliveries.Where(x => x.gameObject.activeSelf).Random();
 
 		// TODO: Make animation (package goes slowly to box, box shows red indicator, etc...)
 

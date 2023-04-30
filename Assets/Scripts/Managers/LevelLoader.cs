@@ -1,11 +1,26 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
 public class LevelLoader : MonoBehaviour
 {
+	[SerializeField] private List<GameObject> levels;
+
+	[Header("References")]
+	[SerializeField] private Transform levelHolder;
+
+	private GameObject currentLevel;
 	private Coroutine _loadingRoutine;
+
+	public void LoadLevelIndex(int i)
+	{
+		if (currentLevel != null)
+			Destroy(currentLevel);
+
+		currentLevel = Instantiate(levels[i], levelHolder);
+	}
 
 	public void Reload(float transitionTime = 0f)
 	{

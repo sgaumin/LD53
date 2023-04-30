@@ -306,6 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   releaseDuration: 0.4
   releaseEase: 3
+  clickSound: {fileID: 11400000, guid: 6f7fa4b2241abdf43a68a53c70ae50e4, type: 2}
   platformMask:
     serializedVersion: 2
     m_Bits: 64

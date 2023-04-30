@@ -1,3 +1,4 @@
+using AudioExpress;
 using System;
 using UnityEngine;
 using static Facade;
@@ -6,6 +7,7 @@ public class LetterBox : MonoBehaviour, IRespawn
 {
 	public event Action OnPlayerCollision;
 
+	[SerializeField] private AudioExpress.AudioClip deliverySound;
 	[SerializeField] private SpriteRenderer indicator;
 
 	public bool HasReceivedDelivery { get; private set; }
@@ -23,6 +25,8 @@ public class LetterBox : MonoBehaviour, IRespawn
 		{
 			HasReceivedDelivery = true;
 			indicator.gameObject.SetActive(true); // TODO: Animation of rotation
+
+			deliverySound.Play();
 
 			OnPlayerCollision?.Invoke();
 		}

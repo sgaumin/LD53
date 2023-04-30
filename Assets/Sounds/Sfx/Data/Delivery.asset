@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc514b984f8ee74eb10d3180f200a69, type: 3}
+  m_Name: Delivery
+  m_EditorClassIdentifier: 
+  isUsingClips: 0
+  clip: {fileID: 8300000, guid: 8931a4de4fef5ee49ae3f2b24165064b, type: 3}
+  clips: []
+  mixerGroup: {fileID: -8129520327886150772, guid: dbd143edd4df0224d92ac4ff39f0844e,
+    type: 2}
+  loop: 0
+  pitchVariation: 2

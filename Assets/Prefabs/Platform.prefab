@@ -77,6 +77,7 @@ MonoBehaviour:
   isFalling: 0
   normalGround: {r: 0.67058825, g: 0.5803922, b: 0.47843137, a: 1}
   fallingGround: {r: 0.5882353, g: 0.42352942, b: 0.42352942, a: 1}
+  fallingSound: {fileID: 11400000, guid: 813bb411d138ed64ca0c0e1a255177dc, type: 2}
   invalidColor: {r: 0.9098039, g: 0.23137255, b: 0.23137255, a: 1}
   validColor: {r: 0.11764706, g: 0.7372549, b: 0.4509804, a: 1}
   woodPrefab: {fileID: 5183725760707744032, guid: ec004993b464175419ca16885f233313,

@@ -18,10 +18,6 @@ public class InputManager : MonoBehaviour
 		{
 			Level.Quit();
 		}
-		if (Input.GetButtonDown("Mute"))
-		{
-			Level.Mute();
-		}
 #endif
 
 		ListenRestart();

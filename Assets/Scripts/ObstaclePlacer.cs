@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using Utils;
 using static Facade;
@@ -14,6 +13,9 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 	[Header("Animations")]
 	[SerializeField] private float releaseDuration = 0.4f;
 	[SerializeField] private Ease releaseEase = Ease.OutSine;
+
+	[Header("Audio")]
+	[SerializeField] private AudioExpress.AudioClip clickSound;
 
 	[Header("Components")]
 	[SerializeField] private LayerMask platformMask;
@@ -48,12 +50,29 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 		multiplierText = GetComponent<TextMeshProUGUI>();
 	}
 
+	private void Awake()
+	{
+		Level.OnRunningEvent += ResetCachedParameters;
+	}
+
+	private void OnDestroy()
+	{
+		Level.OnRunningEvent -= ResetCachedParameters;
+	}
+
 	public void Setup(ObstacleData data)
 	{
 		this.data = data;
 
+
 		startLocalPosition = transform.localPosition;
 		Initialization();
+	}
+
+	private void ResetCachedParameters()
+	{
+		if (TotalAmount > 0)
+			TotalAmount = 0;
 	}
 
 	public void Initialization()
@@ -88,6 +107,7 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 				Amount--;
 			}
 
+			clickSound.Play();
 			CleanCachedTarget();
 			Release().Forget();
 		}
@@ -130,6 +150,7 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 
 		isBeingDragged = true;
 		CurrentSelection = this;
+		clickSound.Play();
 	}
 
 	private async UniTask Release()

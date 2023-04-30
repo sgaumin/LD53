@@ -1,7 +1,7 @@
+using AudioExpress;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using static BuildConstants;
 
 public class Platform : MonoBehaviour, IRespawn
 {
@@ -10,6 +10,9 @@ public class Platform : MonoBehaviour, IRespawn
 	[Header("Visual")]
 	[SerializeField] private Color normalGround;
 	[SerializeField] private Color fallingGround;
+
+	[Header("Sound")]
+	[SerializeField] private AudioExpress.AudioClip fallingSound;
 
 	[Header("Checking")]
 	[SerializeField] private Color invalidColor;
@@ -58,6 +61,7 @@ public class Platform : MonoBehaviour, IRespawn
 
 		obstacle = Instantiate(obstacle);
 		obstacle.HasBeenEdited = true;
+		obstacle.PlayEditingSound();
 		obstacle.transform.transform.position = transform.position;
 
 		return true;
@@ -78,6 +82,7 @@ public class Platform : MonoBehaviour, IRespawn
 	{
 		boxCollider2D.enabled = false;
 
+		fallingSound.Play();
 		await platform.transform.DOScale(Vector2.zero, 0.5f);
 	}
 

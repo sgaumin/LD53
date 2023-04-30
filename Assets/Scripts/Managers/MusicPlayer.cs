@@ -1,62 +1,46 @@
-﻿using DG.Tweening;
-using UnityEngine;
-using UnityEngine.Audio;
+﻿using UnityEngine;
+using static Facade;
 
 public class MusicPlayer : MonoBehaviour
 {
-	public const string MASTER_VOLUME = "masterVolume";
-	public const string MUSIC_VOLUME = "musicVolume";
-	public const string MUSIC_LOWPASS = "musicLowPass";
+	[SerializeField] private AudioExpress.AudioClip mapMusic;
+	[SerializeField] private AudioExpress.AudioClip editingMusic;
+	[SerializeField] private AudioExpress.AudioClip gameMusic;
 
-	[Header("References")]
-	[SerializeField] private AudioMixer mixer;
-	[SerializeField] private AudioSource audioSource;
-
-	private float masterVolume;
-	private float musicVolume;
-	private float musicLowPass;
-
-	public bool IsMuted => masterVolume == -80f;
-
-	public void FadIn()
+	private void Awake()
 	{
-		audioSource.DOKill();
-		audioSource.DOFade(1f, 0.2f);
+		Level.OnLevelEditingEvent += PlayLevelEditingMusic;
+		Level.OnRunningEvent += PlayGameMusic;
 	}
 
-	public void FadOut()
+	private void OnDestroy()
 	{
-		audioSource.DOKill();
-		audioSource.DOFade(0f, 2f);
+		Level.OnLevelEditingEvent -= PlayLevelEditingMusic;
+		Level.OnRunningEvent -= PlayGameMusic;
 	}
 
-	public void UpdateSceneMasterVolume(float percentage)
+	public void Stop()
 	{
-		masterVolume = Mathf.Lerp(-80f, 0f, percentage);
-		mixer.SetFloat(MASTER_VOLUME, masterVolume);
+		mapMusic.Stop();
+		editingMusic.Stop();
+		gameMusic.Stop();
 	}
 
-	public void UpdateSceneMusicVolume(float percentage)
+	private void PlayMapMusic()
 	{
-		musicVolume = Mathf.Lerp(-80f, 0f, percentage);
-		mixer.SetFloat(MUSIC_VOLUME, musicVolume);
+		Stop();
+		mapMusic.Play();
 	}
 
-	public void UpdateSceneMusicLowPass(float percentage)
+	private void PlayLevelEditingMusic()
 	{
-		musicLowPass = Mathf.Lerp(800f, 22000f, percentage);
-		mixer.SetFloat(MUSIC_LOWPASS, musicLowPass);
+		Stop();
+		editingMusic.Play();
 	}
 
-	public void Mute()
+	private void PlayGameMusic()
 	{
-		if (IsMuted)
-		{
-			UpdateSceneMasterVolume(1f);
-		}
-		else
-		{
-			UpdateSceneMasterVolume(0f);
-		}
+		Stop();
+		gameMusic.Play();
 	}
 }

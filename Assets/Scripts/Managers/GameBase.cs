@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using AudioExpress;
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ public class GameBase : Singleton<GameBase>
 
 	[Header("Gameplay References")]
 	[SerializeField] private DeliveryManager deliveryManager;
+
+	[Header("Audio")]
+	[SerializeField] private AudioExpress.AudioClip levelCompletedSound;
 
 	[Header("Settings References")]
 	[SerializeField] private LevelLoader levelLoader;
@@ -72,6 +76,8 @@ public class GameBase : Singleton<GameBase>
 
 	private void Start()
 	{
+		levelLoader.LoadLevelIndex(0);
+
 		State = GameState.LevelEditing;
 	}
 
@@ -89,6 +95,7 @@ public class GameBase : Singleton<GameBase>
 	{
 		if (deliveryManager.AllDelivered)
 		{
+			levelCompletedSound.Play();
 			ReloadScene();
 		}
 	}
@@ -117,15 +124,4 @@ public class GameBase : Singleton<GameBase>
 	}
 
 	#endregion Post-Processing and Effects
-
-	#region Audio
-
-	public bool IsMuted => music.IsMuted;
-
-	public void Mute()
-	{
-		music.Mute();
-	}
-
-	#endregion Audio
 }
