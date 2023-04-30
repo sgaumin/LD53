@@ -73,7 +73,7 @@ MonoBehaviour:
     binaryNameFormat: '{0}.exe'
   - target: 19
     name: Windows x64
-    enabled: 0
+    enabled: 1
     binaryNameFormat: '{0}.exe'
   variants:
   - variantName: Build Output
@@ -101,8 +101,8 @@ MonoBehaviour:
     buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE
     openFolderPostBuild: 0
   _productParameters:
-    buildCounter: 2
-    buildVersion: 1.0.0.2
+    buildCounter: 1
+    buildVersion: 1.0.0.1
     versionTemplate: 1.0.0.$BUILD
     autoGenerate: 1
     syncWithPlayerSettings: 0
@@ -120,45 +120,43 @@ MonoBehaviour:
     platforms:
     - {fileID: -2264913651617008647}
     - {fileID: -8406944055016234807}
-    - {fileID: 3748637687619085300}
   _projectConfigurations:
     configSet:
-      _Buckets: 00000000ffffffff040000000100000006000000ffffffff05000000
-      _HashCodes: 35ad0a67efc7971f133854710bf8e20e97515e19938d670613b7e252
-      _Next: ffffffffffffffffffffffff02000000ffffffff03000000ffffffff
-      _Count: 7
-      _Version: 7
+      _Buckets: 01000000ffffffffffffffff0200000005000000ffffffff04000000
+      _HashCodes: 35ad0a677dfc5350efc7971f133854710bf8e20e13b7e25200000000
+      _Next: ffffffff00000000ffffffffffffffff03000000ffffffff00000000
+      _Count: 6
+      _Version: 6
       _FreeList: -1
       _FreeCount: 0
       _Keys:
       - Main/PC/Windows x86 (App)
+      - Main/PC/Windows x64 (App)
       - Main/PC
       - Main/WebGL/WebGL
       - Main/WebGL
-      - Main/macOS/macOS (Intelx64,App)
-      - Main/macOS
       - Main
+      - 
       _Values:
+      - enabled: 1
+        childKeys: []
       - enabled: 1
         childKeys: []
       - enabled: 1
         childKeys:
         - Main/PC/Windows x86 (App)
+        - Main/PC/Windows x64 (App)
       - enabled: 1
         childKeys: []
       - enabled: 1
         childKeys:
         - Main/WebGL/WebGL
       - enabled: 1
-        childKeys: []
-      - enabled: 1
-        childKeys:
-        - Main/macOS/macOS (Intelx64,App)
-      - enabled: 1
         childKeys:
         - Main/PC
         - Main/WebGL
-        - Main/macOS
+      - enabled: 1
+        childKeys: []
     showViewOptions: 0
     showConfigs: 0
     showBuildInfo: 0
@@ -202,41 +200,6 @@ MonoBehaviour:
     - Visual Studio Solution
   platformName: PC
   dataDirNameFormat: '{0}_Data'
-  targetGroup: 1
---- !u!114 &3748637687619085300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d962d142a259c394da2bdb301b72eeb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  distributionList:
-    distributions: []
-  architectures:
-  - target: 2
-    name: macOS
-    enabled: 1
-    binaryNameFormat: '{0}.app'
-  variants:
-  - variantName: macOS Architecture
-    selectedIndex: 0
-    values:
-    - Intelx64
-    - Apple Silicon
-    - Universal
-  - variantName: Build Output
-    selectedIndex: 0
-    values:
-    - App
-    - Xcode Project
-  platformName: macOS
-  dataDirNameFormat: '{0}.app/Contents'
   targetGroup: 1
 --- !u!114 &5903042306405735369
 MonoBehaviour:
