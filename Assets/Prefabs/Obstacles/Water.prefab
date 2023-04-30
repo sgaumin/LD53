@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 1672362064276163024, guid: 99b164811d7fc2444afdc88125b6cf95,
         type: 3}
       propertyPath: stepCountToBreak
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1672362064276163026, guid: 99b164811d7fc2444afdc88125b6cf95,
         type: 3}

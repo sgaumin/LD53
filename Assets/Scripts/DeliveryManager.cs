@@ -5,12 +5,19 @@ using Utils;
 
 public class DeliveryManager : MonoBehaviour
 {
+	public static DeliveryManager Instance;
+
 	[SerializeField] private Delivery deliveryPrefab;
 
 	private List<Delivery> deliveries = new List<Delivery>();
 	private LetterBox[] letterBoxes;
 
 	public bool AllDelivered => letterBoxes.All(x => x.HasReceivedDelivery);
+
+	private void Awake()
+	{
+		Instance = this;
+	}
 
 	private void Start()
 	{

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using static Facade;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -12,14 +14,31 @@ public class LevelLoader : MonoBehaviour
 	[SerializeField] private Transform levelHolder;
 
 	private GameObject currentLevel;
+	private int currentIndex;
 	private Coroutine _loadingRoutine;
 
-	public void LoadLevelIndex(int i)
+	public async UniTask LoadLevelIndex(int i)
 	{
+		await Level.Effects.Fader.FadeOutAsync();
+
 		if (currentLevel != null)
 			Destroy(currentLevel);
+		currentIndex = i;
 
+		await UniTask.Delay(500);
+
+		await Level.Effects.Fader.FadeInAsync();
 		currentLevel = Instantiate(levels[i], levelHolder);
+	}
+
+	public void RespawnCurrentLevel()
+	{
+		LoadLevelIndex(currentIndex).Forget();
+	}
+
+	public void LoadNext()
+	{
+		LoadLevelIndex(currentIndex + 1).Forget();
 	}
 
 	public void Reload(float transitionTime = 0f)

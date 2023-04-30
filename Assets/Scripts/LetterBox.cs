@@ -1,7 +1,7 @@
-using AudioExpress;
 using System;
 using UnityEngine;
 using static Facade;
+using Random = UnityEngine.Random;
 
 public class LetterBox : MonoBehaviour, IRespawn
 {
@@ -15,6 +15,18 @@ public class LetterBox : MonoBehaviour, IRespawn
 	private void Awake()
 	{
 		Initialization();
+	}
+
+	private void OnEnable()
+	{
+		if (Random.value >= 0.5f) Flip();
+	}
+
+	private void Flip()
+	{
+		Vector2 scale = transform.localScale;
+		scale.x *= -1f;
+		transform.localScale = scale;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

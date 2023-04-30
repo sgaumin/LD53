@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,18 +25,16 @@ public class FadeScreen : MonoBehaviour
 		image.DOFade(1f, Settings.sceneFadeDuration);
 	}
 
-	public IEnumerator FadeOutCore(float fadeDuration)
+	public async UniTask FadeOutCore(float fadeDuration)
 	{
 		image.color = defaultFadeOutColorTarget;
-		Tweener fade = image.DOFade(1f, fadeDuration);
-		yield return fade.WaitForCompletion();
+		await image.DOFade(1f, fadeDuration);
 	}
 
-	public IEnumerator FadeOutCore()
+	public async UniTask FadeOutAsync()
 	{
 		image.color = defaultFadeOutColorTarget;
-		Tweener fade = image.DOFade(1f, Settings.sceneFadeDuration);
-		yield return fade.WaitForCompletion();
+		await image.DOFade(1f, Settings.sceneFadeDuration);
 	}
 
 	public void FadeIn(float fadeDuration)
@@ -57,7 +56,7 @@ public class FadeScreen : MonoBehaviour
 		yield return fade.WaitForCompletion();
 	}
 
-	public IEnumerator FadeInCore()
+	public IEnumerator FadeInAsync()
 	{
 		image.color = defaultFadeInColorTarget;
 		Tweener fade = image.DOFade(0f, Settings.sceneFadeDuration);

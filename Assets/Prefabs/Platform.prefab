@@ -84,7 +84,7 @@ MonoBehaviour:
     type: 3}
   rockPrefab: {fileID: 5183725760707744032, guid: 2d7704ebee23fd048801fae67a62ecc1,
     type: 3}
-  waterPrefab: {fileID: 5183725760707744032, guid: 2d7704ebee23fd048801fae67a62ecc1,
+  waterPrefab: {fileID: 5183725760707744032, guid: 8594a8a168f700f4bae238c096fa2746,
     type: 3}
   obstacleLayer:
     serializedVersion: 2

@@ -1,4 +1,5 @@
 ﻿using AudioExpress;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,6 @@ public class GameBase : Singleton<GameBase>
 	public event Action OnGameOverEvent;
 	public event Action OnPauseEvent;
 
-	[Header("Gameplay References")]
-	[SerializeField] private DeliveryManager deliveryManager;
-
 	[Header("Audio")]
 	[SerializeField] private AudioExpress.AudioClip levelCompletedSound;
 
@@ -24,6 +22,9 @@ public class GameBase : Singleton<GameBase>
 	[SerializeField] private LevelLoader levelLoader;
 	[SerializeField] private MusicPlayer music;
 	[SerializeField] private VisualEffectsHandler effectHandler;
+
+	public VisualEffectsHandler Effects => effectHandler;
+
 
 	private GameState state;
 
@@ -76,9 +77,14 @@ public class GameBase : Singleton<GameBase>
 
 	private void Start()
 	{
-		levelLoader.LoadLevelIndex(0);
+		levelLoader.LoadLevelIndex(0).Forget();
 
 		State = GameState.LevelEditing;
+	}
+
+	public void RespawnLevel()
+	{
+		levelLoader.RespawnCurrentLevel();
 	}
 
 	public void RestartLevel()
@@ -93,10 +99,10 @@ public class GameBase : Singleton<GameBase>
 
 	public void CheckLevelCompleted()
 	{
-		if (deliveryManager.AllDelivered)
+		if (DeliveryManager.Instance.AllDelivered)
 		{
 			levelCompletedSound.Play();
-			ReloadScene();
+			levelLoader.LoadNext();
 		}
 	}
 

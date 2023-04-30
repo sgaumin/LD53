@@ -18,4 +18,4 @@ MonoBehaviour:
   mixerGroup: {fileID: -6618828532984301712, guid: dbd143edd4df0224d92ac4ff39f0844e,
     type: 2}
   loop: 0
-  pitchVariation: 1
+  pitchVariation: 2

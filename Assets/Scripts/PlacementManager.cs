@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using static Facade;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlacementManager : MonoBehaviour
 {
@@ -39,23 +40,33 @@ public class PlacementManager : MonoBehaviour
 
 	private void Start()
 	{
+		int count = configs.Count;
+		if (count == 0)
+		{
+			Level.State = GameState.Running;
+			return;
+		}
+
 		foreach (ObstaclePlacer obstaclePlacer in obstaclePlacers)
 		{
 			obstaclePlacer.gameObject.SetActive(false);
 		}
 
 		// Visual rearrangement 
-		int count = configs.Count;
 		List<ObstaclePlacer> reorderedPlacers = new List<ObstaclePlacer>();
 		if (count == 1)
 		{
 			reorderedPlacers.Add(obstaclePlacers[1]);
+
+			Destroy(obstaclePlacers[0].gameObject);
+			Destroy(obstaclePlacers[2].gameObject);
 		}
 		else if (count == 2)
 		{
 			reorderedPlacers.Add(obstaclePlacers[0]);
 			reorderedPlacers.Add(obstaclePlacers[2]);
 
+			Destroy(obstaclePlacers[1].gameObject);
 		}
 		else
 		{
@@ -72,11 +83,13 @@ public class PlacementManager : MonoBehaviour
 
 	private void FadIn()
 	{
+		transform.DOKill();
 		transform.DOMoveY(yInPosition, fadeDuration).SetEase(fadeInEase);
 	}
 
 	private void FadOut()
 	{
+		transform.DOKill();
 		transform.DOMoveY(startPosition.y, fadeDuration).SetEase(fadeOutEase);
 	}
 }

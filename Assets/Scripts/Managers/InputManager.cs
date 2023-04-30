@@ -26,9 +26,9 @@ public class InputManager : MonoBehaviour
 
 	private static void ListenRestart()
 	{
-		if (!Level.IsRunning && Input.GetKeyDown(KeyCode.R))
+		if (Input.GetKeyDown(KeyCode.R))
 		{
-			Level.ReloadScene();
+			Level.RespawnLevel();
 		}
 	}
 

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 	[SerializeField] private LayerMask platformLayer;
 	[SerializeField] private LayerMask groundLayer;
 	[SerializeField] private LayerMask obstacleLayer;
+	[SerializeField] private LayerMask wallLayer;
 
 	private Vector2 spawnPosition;
 	private bool isDead;
@@ -88,6 +89,9 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 			footStepSound.Play();
 
+			// If destination is wall stops
+			if (IsThereWallAt(destination)) break;
+
 			await transform.DOMove(destination, 1f / moveSpeed);
 
 			Vector2 currentPosition = (Vector2)transform.position;
@@ -107,6 +111,9 @@ public class PlayerController : MonoBehaviour, IRespawn
 						else
 						{
 							obstacle.PlayStandOnSound();
+
+							if (startPlatform != null && startPlatform.IsFalling)
+								startPlatform.Fall().Forget();
 						}
 						break;
 					}
@@ -118,7 +125,8 @@ public class PlayerController : MonoBehaviour, IRespawn
 					startPlatform.Fall().Forget();
 			}
 
-			if (GetCurrentPlatform() == null && !IsOnGround())
+			Platform platform = GetCurrentPlatform();
+			if ((platform == null && !IsOnGround()) || (platform != null && platform.HasFallen))
 			{
 				Kill().Forget();
 				return;
@@ -141,8 +149,12 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private bool IsOnGround()
 	{
-		bool check = Physics2D.Linecast((Vector2)transform.position, (Vector2)transform.position + 0.1f * Vector2.right, groundLayer);
-		return check;
+		return Physics2D.Linecast((Vector2)transform.position, (Vector2)transform.position + 0.1f * Vector2.right, groundLayer);
+	}
+
+	private bool IsThereWallAt(Vector2 location)
+	{
+		return Physics2D.Linecast(location, location + 0.1f * Vector2.right, wallLayer);
 	}
 
 	private async UniTask Kill()

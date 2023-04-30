@@ -139,7 +139,7 @@ MonoBehaviour:
   - type: 1
     sprite: {fileID: 21300000, guid: e39a24abaeb471f4ca4b62045d5e009c, type: 3}
     amount: 2
-  yInPosition: -3
+  yInPosition: -4
   fadeDuration: 1
   fadeInEase: 27
   fadeOutEase: 26

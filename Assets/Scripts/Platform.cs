@@ -30,6 +30,7 @@ public class Platform : MonoBehaviour, IRespawn
 	[SerializeField] private Collider2D boxCollider2D;
 
 	public bool IsFalling => isFalling;
+	public bool HasFallen { get; private set; }
 
 	private void Start()
 	{
@@ -80,15 +81,14 @@ public class Platform : MonoBehaviour, IRespawn
 
 	public async UniTask Fall()
 	{
-		boxCollider2D.enabled = false;
-
+		HasFallen = true;
 		fallingSound.Play();
 		await platform.transform.DOScale(Vector2.zero, 0.5f);
 	}
 
 	public void Initialization()
 	{
-		boxCollider2D.enabled = true;
+		HasFallen = false;
 
 		platform.color = isFalling ? fallingGround : normalGround;
 		transform.DOKill();

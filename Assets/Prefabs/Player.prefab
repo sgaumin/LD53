@@ -160,6 +160,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &9188434355024663228
 Rigidbody2D:
   serializedVersion: 4
