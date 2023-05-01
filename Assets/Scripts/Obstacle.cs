@@ -9,6 +9,7 @@ public class Obstacle : MonoBehaviour, IRespawn
 {
 	[SerializeField] private int stepCountToBreak;
 	[SerializeField] private bool canStandOnIt;
+	[SerializeField] private bool showBubbleOnStart;
 
 	[Header("Audio")]
 	[SerializeField] private AudioExpress.AudioClip breakingSound;
@@ -48,7 +49,7 @@ public class Obstacle : MonoBehaviour, IRespawn
 	}
 
 	[Button]
-	public async UniTask ShowBubble()
+	public async UniTask ShowBubble(int duration = 500)
 	{
 		if (isShowingBubble || stepCountToBreak > 9 || Level.UnlockedLevelIndex < 12) return;
 
@@ -59,7 +60,7 @@ public class Obstacle : MonoBehaviour, IRespawn
 		bubbleText.SetText($">{stepCountToBreak - 1}");
 
 		await bubble.transform.DOScaleY(1f, 0.3f).From(0f).SetEase(Ease.OutBack);
-		await UniTask.Delay(500);
+		await UniTask.Delay(duration);
 		await bubble.transform.DOScaleY(0f, 0.3f).From(1f).SetEase(Ease.InBack);
 
 		bubble.SetActive(false);
@@ -77,14 +78,18 @@ public class Obstacle : MonoBehaviour, IRespawn
 	{
 		if (HasBeenEdited) Destroy(gameObject);
 
-		if (gameObject.activeSelf) return;
+		if (!gameObject.activeSelf)
+		{
+			gameObject.SetActive(true);
+			transform.DOScale(Vector3.one, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack);
 
-		gameObject.SetActive(true);
-		transform.DOScale(Vector3.one, 0.5f).From(Vector3.zero).SetEase(Ease.OutBack);
+			isShowingBubble = false;
+			bubble.transform.DOKill();
+			bubble.SetActive(false);
+		}
 
-		isShowingBubble = false;
-		bubble.transform.DOKill();
-		bubble.SetActive(false);
+		if (showBubbleOnStart)
+			ShowBubble(2000).Forget();
 	}
 
 	public bool TryToBreak(int currentStepCount)

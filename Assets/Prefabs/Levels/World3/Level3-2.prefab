@@ -920,6 +920,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357130561401657252}
     m_Modifications:
+    - target: {fileID: 5183725760707744032, guid: 2d7704ebee23fd048801fae67a62ecc1,
+        type: 3}
+      propertyPath: showBubbleOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5183725760707744034, guid: 2d7704ebee23fd048801fae67a62ecc1,
         type: 3}
       propertyPath: m_SortingOrder
@@ -2065,6 +2070,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 357130561401657252}
     m_Modifications:
+    - target: {fileID: 5183725760707744032, guid: ec004993b464175419ca16885f233313,
+        type: 3}
+      propertyPath: showBubbleOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5183725760707744034, guid: ec004993b464175419ca16885f233313,
         type: 3}
       propertyPath: m_SortingOrder
