@@ -186,30 +186,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2593835828638304647, guid: 91f77c7f45a95cc40a928615b549a427,
+        type: 3}
+      propertyPath: unlockAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593835828638304647, guid: 91f77c7f45a95cc40a928615b549a427,
+        type: 3}
+      propertyPath: skipCinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.03448276
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.03448276
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.9310345
       objectReference: {fileID: 0}
     - target: {fileID: 3240564644996932493, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.9310345
       objectReference: {fileID: 0}
     - target: {fileID: 5781611409483811789, guid: 91f77c7f45a95cc40a928615b549a427,
         type: 3}

@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 0
     16:9: 0
     Others: 0
-  bundleVersion: 1.0.0.2
+  bundleVersion: 1.0.0.3
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -158,11 +158,11 @@ PlayerSettings:
     Standalone: com.MahjoubGameDev.Game
     WebGL: com.MahjoubGameDev.Game
   buildNumber:
-    Standalone: 7
-    iPhone: 7
+    Standalone: 8
+    iPhone: 8
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 8
+  AndroidBundleVersionCode: 9
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
