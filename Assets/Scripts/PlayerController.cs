@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 	[Header("References")]
 	[SerializeField] private SpriteRenderer sprite;
 	[SerializeField] private VerticalLayerSortingSetter sorting;
+	[SerializeField] private PlayerDeliveryHolder deliveryHolder;
 	[SerializeField] private LayerMask platformLayer;
 	[SerializeField] private LayerMask groundLayer;
 	[SerializeField] private LayerMask obstacleLayer;
@@ -41,6 +42,8 @@ public class PlayerController : MonoBehaviour, IRespawn
 	private bool isMoving;
 	private bool isFacingLeft = true;
 	private CancellationTokenSource source;
+
+	public PlayerDeliveryHolder DeliveryHolder => deliveryHolder;
 
 	public bool CanInteract { get; private set; }
 
