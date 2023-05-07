@@ -39,7 +39,7 @@ public class Platform : MonoBehaviour, IRespawn
 
 	private bool HasObstacle()
 	{
-		return Physics2D.Linecast(transform.position, transform.position, obstacleLayer);
+		return Physics2D.Linecast(transform.position, transform.position, obstacleLayer) || isFalling;
 	}
 
 	public bool SetObstacle(ObstacleData data)
