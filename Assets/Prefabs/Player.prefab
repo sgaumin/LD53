@@ -281,7 +281,6 @@ MonoBehaviour:
   footStepSound: {fileID: 11400000, guid: d60247e9fa8e22a4298490d8247c0196, type: 2}
   spawnSound: {fileID: 11400000, guid: 797dd0920d40b354685dcd31ece8f4ae, type: 2}
   sprite: {fileID: 1965733113743093557}
-  sorting: {fileID: 7438302605900400408}
   deliveryHolder: {fileID: 8811807646069106354}
   platformLayer:
     serializedVersion: 2

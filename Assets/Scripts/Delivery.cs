@@ -1,16 +1,29 @@
 using UnityEngine;
-using static Facade;
 
 public class Delivery : MonoBehaviour, IRespawn
 {
 	[SerializeField] private float smoothFollow = 0.1f;
+	[SerializeField] private SpriteRenderer spriteRenderer;
 
+	private PlayerController player;
 	private PlayerDeliveryHolder holder;
 	private Transform target;
 
 	private void Awake()
 	{
+		player = FindObjectOfType<PlayerController>();
+		player.OnSpawningStartEvent += SetLayerOnTop;
+		player.OnSpawningEndEvent += SetLayerPlayer;
+
+		SetLayerOnTop();
+
 		Initialization();
+	}
+
+	private void OnDestroy()
+	{
+		player.OnSpawningStartEvent -= SetLayerOnTop;
+		player.OnSpawningEndEvent -= SetLayerPlayer;
 	}
 
 	private void Start()
@@ -18,11 +31,13 @@ public class Delivery : MonoBehaviour, IRespawn
 		GetTarget();
 	}
 
+	private void SetLayerPlayer() => spriteRenderer.sortingLayerName = "Player";
+	private void SetLayerOnTop() => spriteRenderer.sortingLayerName = "OnTop";
+
 	private void GetTarget()
 	{
 		if (target != null) return;
 
-		PlayerController player = FindObjectOfType<PlayerController>();
 		holder = player.DeliveryHolder;
 		target = holder.Get();
 	}

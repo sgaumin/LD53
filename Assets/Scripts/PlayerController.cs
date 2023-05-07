@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using System.Threading;
 using UnityEngine;
 using Utils;
@@ -7,6 +8,9 @@ using static Facade;
 
 public class PlayerController : MonoBehaviour, IRespawn
 {
+	public Action OnSpawningStartEvent;
+	public Action OnSpawningEndEvent;
+
 	[SerializeField] private float moveSpeed;
 
 	[Header("Movements")]
@@ -30,7 +34,6 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	[Header("References")]
 	[SerializeField] private SpriteRenderer sprite;
-	[SerializeField] private VerticalLayerSortingSetter sorting;
 	[SerializeField] private PlayerDeliveryHolder deliveryHolder;
 	[SerializeField] private LayerMask platformLayer;
 	[SerializeField] private LayerMask groundLayer;
@@ -260,9 +263,9 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private async UniTask Spawn()
 	{
-		sorting.enabled = false;
-		sprite.sortingOrder = 10000;
+		sprite.sortingLayerName = "OnTop";
 		transform.position = spawnPosition.WithY(8f);
+		OnSpawningStartEvent?.Invoke();
 
 		transform.DOKill();
 		await transform.DOMoveY(spawnPosition.y, 0.5f).SetEase(Ease.Linear);
@@ -271,11 +274,11 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 		spawnSound.Play();
 		Level.GenerateImpulse();
-		sorting.enabled = true;
+		sprite.sortingLayerName = "Player";
+		PlayIdle().Forget();
 
 		CanInteract = true;
-
-		PlayIdle().Forget();
+		OnSpawningEndEvent?.Invoke();
 	}
 
 	private void SpawnEffect()

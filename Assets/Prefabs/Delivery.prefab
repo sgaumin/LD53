@@ -111,3 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813c2e3807594c24db13243b0ac7a9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothFollow: 0.1
+  spriteRenderer: {fileID: 8401482490952537598}
