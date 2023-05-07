@@ -97,8 +97,6 @@ public class PlayerController : MonoBehaviour, IRespawn
 		if (isMoving || isDead || !CanInteract) return;
 
 		Vector2 startPosition = (Vector2)transform.position;
-		if (GetCurrentPlatform() == null) return;
-
 		isMoving = true;
 		CheckPlayerOriantation(direction);
 		int step = 1;
@@ -106,7 +104,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 		while (true)
 		{
-			Platform startPlatform = GetCurrentPlatform();
+			Platform currentPlatform = GetCurrentPlatform();
 
 			Vector2 destination = startPosition + (direction * step);
 
@@ -140,8 +138,8 @@ public class PlayerController : MonoBehaviour, IRespawn
 						{
 							obstacle.PlayStandOnSound();
 
-							if (startPlatform != null && startPlatform.IsFalling)
-								startPlatform.Fall().Forget();
+							if (currentPlatform != null && currentPlatform.IsFalling)
+								currentPlatform.Fall().Forget();
 						}
 						break;
 					}
@@ -153,8 +151,8 @@ public class PlayerController : MonoBehaviour, IRespawn
 			}
 			else
 			{
-				if (startPlatform != null && startPlatform.IsFalling)
-					startPlatform.Fall().Forget();
+				if (currentPlatform != null && currentPlatform.IsFalling)
+					currentPlatform.Fall().Forget();
 			}
 
 			Platform platform = GetCurrentPlatform();
