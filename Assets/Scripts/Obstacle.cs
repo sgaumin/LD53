@@ -51,16 +51,20 @@ public class Obstacle : MonoBehaviour, IRespawn
 	[Button]
 	public async UniTask ShowBubble(int duration = 500)
 	{
-		if (isShowingBubble || stepCountToBreak > 9 || Level.UnlockedLevelIndex < 12) return;
+		if (isShowingBubble || stepCountToBreak > 9 || Level.UnlockedLevelIndex < 11) return;
 
-		isShowingBubble = true;
-		bubble.SetActive(true);
-		bubble.transform.DOKill();
+		if (!bubble.activeSelf)
+		{
+			isShowingBubble = true;
+			bubble.SetActive(true);
+			bubble.transform.DOKill();
 
-		bubbleText.SetText($">{stepCountToBreak - 1}");
+			bubbleText.SetText($">{stepCountToBreak - 1}");
 
-		await bubble.transform.DOScaleY(1f, 0.3f).From(0f).SetEase(Ease.OutBack);
-		await UniTask.Delay(duration);
+			await bubble.transform.DOScaleY(1f, 0.3f).From(0f).SetEase(Ease.OutBack);
+			await UniTask.Delay(duration);
+		}
+
 		await bubble.transform.DOScaleY(0f, 0.3f).From(1f).SetEase(Ease.InBack);
 
 		bubble.SetActive(false);
