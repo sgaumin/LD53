@@ -255,7 +255,6 @@ public class PlayerController : MonoBehaviour, IRespawn
 		isFacingLeft = true;
 		sprite.transform.localScale = Vector2.one;
 
-
 		Spawn().Forget();
 	}
 
