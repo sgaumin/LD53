@@ -101,21 +101,22 @@ MonoBehaviour:
     buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE
     openFolderPostBuild: 1
   _productParameters:
-    buildCounter: 2
+    buildCounter: 1
     buildVersion: 1.0.0.2
-    versionTemplate: 1.0.0.$BUILD
+    versionTemplate: 1.0.$BUILD
     autoGenerate: 1
     syncWithPlayerSettings: 0
   _releaseTypeList:
     releaseTypes:
     - typeName: Main
-      bundleIdentifier: com.MahjoubGameDev.Game
+      bundleIdentifier: com.MahjoubGameDev.RhinoExpress
       companyName: MahjoubGameDev
-      productName: Game
+      productName: Rhino Express
       buildOptions: 0
       customDefines: 
       sceneList:
-        enabledScenes: []
+        enabledScenes:
+        - fileGUID: 9a798019197ab7549a8903b0880ea136
   _platformList:
     platforms:
     - {fileID: -2264913651617008647}
