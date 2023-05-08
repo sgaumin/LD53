@@ -8,7 +8,7 @@ using static Facade;
 public class ObstaclePlacer : MonoBehaviour, IRespawn
 {
 	public static ObstaclePlacer CurrentSelection;
-	private static int TotalAmount = 0;
+	public static int TotalAmount = 0;
 
 	[Header("Animations")]
 	[SerializeField] private float releaseDuration = 0.4f;

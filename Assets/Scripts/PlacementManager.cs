@@ -1,5 +1,7 @@
 using DG.Tweening;
+using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static Facade;
 
@@ -82,6 +84,22 @@ public class PlacementManager : MonoBehaviour
 		{
 			reorderedPlacers[i].Setup(configs[i]);
 			reorderedPlacers[i].gameObject.SetActive(true);
+		}
+	}
+
+	[Button]
+	public void ResetPlacement()
+	{
+		ObstaclePlacer.TotalAmount = 0;
+
+		foreach (ObstaclePlacer placer in FindObjectsOfType<ObstaclePlacer>(true).ToList())
+		{
+			placer.Initialization();
+		}
+
+		foreach (Obstacle obstacle in FindObjectsOfType<Obstacle>(true).ToList())
+		{
+			obstacle.Initialization();
 		}
 	}
 
