@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 using Utils;
@@ -9,6 +10,8 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 {
 	public static ObstaclePlacer CurrentSelection;
 	public static int TotalAmount = 0;
+
+	public static Action<int> OnTotalAmountChangeEvent;
 
 	[Header("Animations")]
 	[SerializeField] private float releaseDuration = 0.4f;
@@ -114,6 +117,8 @@ public class ObstaclePlacer : MonoBehaviour, IRespawn
 			{
 				TotalAmount--;
 				Amount--;
+
+				OnTotalAmountChangeEvent?.Invoke(TotalAmount);
 			}
 
 			clickSound.Play();

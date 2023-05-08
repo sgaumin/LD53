@@ -17,9 +17,11 @@ public class PlacementManager : MonoBehaviour
 	[SerializeField] private Ease fadeOutEase = Ease.InBack;
 
 	[Header("References")]
+	[SerializeField] private Transform obstacleHolder;
+	[SerializeField] private Transform clearButton;
 	[SerializeField] private ObstaclePlacer[] obstaclePlacers;
 
-	private Vector2 startPosition;
+	private float startVerticalPosition;
 
 	public static bool ManualMode { get; set; }
 
@@ -30,18 +32,22 @@ public class PlacementManager : MonoBehaviour
 
 	private void Awake()
 	{
-		Level.OnLevelEditingEvent += FadIn;
-		Level.OnRunningEvent += FadOut;
+		Level.OnLevelEditingEvent += HolderFadIn;
+		Level.OnRunningEvent += HolderFadOut;
+		Level.OnRunningEvent += ClearFadOut;
+		ObstaclePlacer.OnTotalAmountChangeEvent += ClearFadIn;
 
 		ManualMode = startWithManualMode;
 
-		startPosition = transform.position;
+		startVerticalPosition = obstacleHolder.position.y;
 	}
 
 	private void OnDestroy()
 	{
-		Level.OnLevelEditingEvent -= FadIn;
-		Level.OnRunningEvent -= FadOut;
+		Level.OnLevelEditingEvent -= HolderFadIn;
+		Level.OnRunningEvent -= HolderFadOut;
+		Level.OnRunningEvent -= ClearFadOut;
+		ObstaclePlacer.OnTotalAmountChangeEvent -= ClearFadIn;
 	}
 
 	private void Start()
@@ -87,7 +93,6 @@ public class PlacementManager : MonoBehaviour
 		}
 	}
 
-	[Button]
 	public void ResetPlacement()
 	{
 		ObstaclePlacer.TotalAmount = 0;
@@ -103,19 +108,35 @@ public class PlacementManager : MonoBehaviour
 		}
 	}
 
-	private void FadIn()
+	private void HolderFadIn()
 	{
 		if (ManualMode) return;
 
-		transform.DOKill();
-		transform.DOMoveY(yInPosition, fadeDuration).SetEase(fadeInEase);
+		obstacleHolder.DOKill();
+		obstacleHolder.DOMoveY(yInPosition, fadeDuration).SetEase(fadeInEase);
 	}
 
-	private void FadOut()
+	private void HolderFadOut()
 	{
 		if (ManualMode) return;
 
-		transform.DOKill();
-		transform.DOMoveY(startPosition.y, fadeDuration).SetEase(fadeOutEase);
+		obstacleHolder.DOKill();
+		obstacleHolder.DOMoveY(startVerticalPosition, fadeDuration).SetEase(fadeOutEase);
+	}
+
+	private void ClearFadIn(int amount)
+	{
+		if (ManualMode || amount <= 0) return;
+
+		clearButton.DOKill();
+		clearButton.DOMoveY(yInPosition, fadeDuration).SetEase(fadeInEase);
+	}
+
+	private void ClearFadOut()
+	{
+		if (ManualMode) return;
+
+		clearButton.DOKill();
+		clearButton.DOMoveY(startVerticalPosition, fadeDuration).SetEase(fadeOutEase);
 	}
 }

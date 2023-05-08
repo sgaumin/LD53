@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6832955377837739093}
-  m_RootOrder: 3
+  m_Father: {fileID: 6832955378635699951}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5843714696040841938
 SpriteRenderer:
@@ -187,7 +187,6 @@ Transform:
   - {fileID: 530070142393572612}
   - {fileID: 1872409665434180717}
   - {fileID: 5652406467292113005}
-  - {fileID: 8026314978342602835}
   m_Father: {fileID: 6832955378635699951}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -273,6 +272,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6832955377837739093}
+  - {fileID: 8026314978342602835}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,6 +304,8 @@ MonoBehaviour:
   - {fileID: 8532339515064773254}
   - {fileID: 7552528615773596655}
   - {fileID: 4558412286624997359}
+  obstacleHolder: {fileID: 6832955377837739093}
+  clearButton: {fileID: 8026314978342602835}
 --- !u!1001 &655079561876220543
 PrefabInstance:
   m_ObjectHideFlags: 0
