@@ -80,7 +80,11 @@ public class Obstacle : MonoBehaviour, IRespawn
 
 	public void Initialization()
 	{
-		if (HasBeenEdited) Destroy(gameObject);
+		if (HasBeenEdited)
+		{
+			SpawnEffect();
+			Destroy(gameObject);
+		}
 
 		if (!gameObject.activeSelf)
 		{
