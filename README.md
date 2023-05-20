@@ -3,7 +3,7 @@
 [![visual-studio](https://img.shields.io/badge/visualstudio-purple)](https://visualstudio.microsoft.com/fr/vs/)
 
 ## Where to play?
-The build is playable [HERE](https://seb-gamedev.itch.io/rhino-express).
+The game is playable [HERE](https://seb-gamedev.itch.io/rhino-express).
 
 ## License
 Code released under the MIT license
