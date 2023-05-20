@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 	private bool isMoving;
 	private bool isFacingLeft = true;
 	private CancellationTokenSource idleAnimationCancellationSource;
+	private CancellationTokenSource waitMoveCancellationSource;
 
 	public PlayerDeliveryHolder DeliveryHolder => deliveryHolder;
 
@@ -93,9 +94,13 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private async UniTask Move(Vector2 direction)
 	{
+		// Canceling any waiting moving
+		waitMoveCancellationSource = waitMoveCancellationSource.SafeReset();
+		CancellationToken token = waitMoveCancellationSource.Token;
+
 		// Caching input
 		while (isMoving)
-			await UniTask.Yield();
+			await UniTask.Yield(cancellationToken: token);
 
 		// Force game running if receiving input while editing
 		if (Level.State == GameState.LevelEditing)
