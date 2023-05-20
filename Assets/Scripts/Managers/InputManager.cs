@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using static Facade;
 
 public class InputManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class InputManager : MonoBehaviour
 	[SerializeField] private LayerMask obstacleMask;
 
 	private Vector2 inputs;
+	private bool hasReleased;
 
 	private void Update()
 	{
@@ -55,9 +57,31 @@ public class InputManager : MonoBehaviour
 		inputs.x = Input.GetAxisRaw("Horizontal");
 		inputs.y = Input.GetAxisRaw("Vertical");
 
-		if (inputs.x > 0) OnRightEvent?.Invoke();
-		else if (inputs.x < 0) OnLeftEvent?.Invoke();
-		else if (inputs.y > 0) OnUpEvent?.Invoke();
-		else if (inputs.y < 0) OnDownEvent?.Invoke();
+		if (inputs.x > 0 && hasReleased)
+		{
+			hasReleased = false;
+			OnRightEvent?.Invoke();
+		}
+		else if (inputs.x < 0 && hasReleased)
+		{
+			hasReleased = false;
+			OnLeftEvent?.Invoke();
+		}
+		else if (inputs.y > 0 && hasReleased)
+		{
+			hasReleased = false;
+			OnUpEvent?.Invoke();
+		}
+		else if (inputs.y < 0 && hasReleased)
+		{
+			hasReleased = false;
+			OnDownEvent?.Invoke();
+		}
+
+		// Checking if input buttons have been released 
+		if (!hasReleased && inputs == Vector2.zero)
+		{
+			hasReleased = true;
+		}
 	}
 }

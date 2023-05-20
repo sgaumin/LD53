@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 	private bool isDead;
 	private bool isMoving;
 	private bool isFacingLeft = true;
-	private CancellationTokenSource source;
+	private CancellationTokenSource idleAnimationCancellationSource;
 
 	public PlayerDeliveryHolder DeliveryHolder => deliveryHolder;
 
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private void OnDestroy()
 	{
-		source.SafeDispose();
+		idleAnimationCancellationSource.SafeDispose();
 
 		InputManager.OnUpEvent -= MoveUp;
 		InputManager.OnDownEvent -= MoveDown;
@@ -93,11 +93,15 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private async UniTask Move(Vector2 direction)
 	{
+		// Caching input
+		while (isMoving)
+			await UniTask.Yield();
+
 		// Force game running if receiving input while editing
 		if (Level.State == GameState.LevelEditing)
 			Level.State = GameState.Running;
 
-		if (isMoving || isDead || !CanInteract) return;
+		if (isDead || !CanInteract) return;
 
 		Vector2 startPosition = (Vector2)transform.position;
 		isMoving = true;
@@ -179,7 +183,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 		{
 			CanInteract = false;
 
-			source.Cancel();
+			idleAnimationCancellationSource.Cancel();
 			sprite.transform.DOKill();
 
 			await UniTask.Delay(1000);
@@ -214,8 +218,8 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 	private async UniTask PlayIdle()
 	{
-		source = source.SafeReset();
-		CancellationToken token = source.Token;
+		idleAnimationCancellationSource = idleAnimationCancellationSource.SafeReset();
+		CancellationToken token = idleAnimationCancellationSource.Token;
 		while (!token.IsCancellationRequested)
 		{
 			sprite.transform.DOKill();
@@ -233,7 +237,7 @@ public class PlayerController : MonoBehaviour, IRespawn
 
 		fallingSound.Play();
 
-		source.Cancel();
+		idleAnimationCancellationSource.Cancel();
 		sprite.transform.DOKill();
 
 		await sprite.transform.DOScale(Vector2.zero, deathScaleDownDuration);
